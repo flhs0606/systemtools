@@ -31,6 +31,7 @@ from ..common.logger import debug, error, info
 from ..common.os_detect import OSType, get_system_info
 from ..common.system_exec import execute_reboot, run_command
 from .base_tool import BaseTool, ToolRegistry
+from .dtb_tool import is_dtb_protected
 
 FLASH_DIR = "/flash"
 STORAGE_DIR = "/storage"
@@ -500,6 +501,12 @@ fi
 
                 for md5_file in ["KERNEL.img.md5", "KERNEL.md5", "SYSTEM.md5"]:
                     self._copy_optional_file(src_vdir, self.flash_dir, md5_file)
+
+                # Check DTB protection before touching dtb.img
+                if not is_dtb_protected(self.config_dir):
+                    self._copy_optional_file(src_vdir, self.flash_dir, "dtb.img")
+                else:
+                    info("DTB protection is active (ENABLE=no), skipped overwriting dtb.img in /flash")
 
                 os.makedirs(self.config_dir, exist_ok=True)
                 with open(self.switch_target_file, "w", encoding="utf-8") as f:

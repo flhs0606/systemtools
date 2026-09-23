@@ -3,17 +3,23 @@
 
 from .base_tool import BaseTool, ToolRegistry
 from .disk_benchmark import DiskBenchmarkTool
+from .dtb_tool import DtbTool, is_dtb_protected, set_dtb_protection
 from .log_cleaner import LogCleanerTool
 from .net_config import NetConfigTool
 from .net_speedtest import NetSpeedtestTool
 from .os_switcher import OsSwitcherTool
+from .ram_cleaner import RamCleanerTool
 
 __all__ = [
     "BaseTool",
     "ToolRegistry",
     "OsSwitcherTool",
+    "DtbTool",
+    "RamCleanerTool",
     "NetSpeedtestTool",
     "DiskBenchmarkTool",
     "NetConfigTool",
     "LogCleanerTool",
+    "is_dtb_protected",
+    "set_dtb_protection",
 ]

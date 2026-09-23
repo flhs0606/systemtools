@@ -86,6 +86,18 @@ To add a new tool:
     - Supports backup of the current live `/flash` system to a new version slot.
     - Supports deletion of non-active version slots.
     - Remounts `/flash` read-write (`mount -o remount,rw /flash`), syncs disk, and reboots (`reboot -f`).
+    - Respects DTB auto-update protection setting: never overwrites `/flash/dtb.img` if protection is active.
+- [resources/lib/tools/dtb_tool.py](resources/lib/tools/dtb_tool.py):
+  - **DTB Auto-Update Protection & Management**:
+    - Manages `/storage/.config/dtb-autoupdate.conf` (`ENABLE=no` to lock DTB against overwrite on tar upgrades).
+    - Backs up current running `/flash/dtb.img` to `/storage/.config/custom_dtb.img`.
+    - Restores custom DTB backup back to `/flash/dtb.img`.
+    - Reads hardware device tree model from `/proc/device-tree/model`.
+- [resources/lib/tools/ram_cleaner.py](resources/lib/tools/ram_cleaner.py):
+  - **One-Click System RAM & Cache Cleaner**:
+    - Flushes dirty blocks with `sync`, drops pagecache/dentries/inodes via `/proc/sys/vm/drop_caches` (`echo 3 > ...`).
+    - Purges Kodi internal texture/stream caches with `ClearCache` and runs Python `gc.collect()`.
+    - Reads `/proc/meminfo` to display memory stats and amount of RAM freed.
 - [resources/lib/tools/net_speedtest.py](resources/lib/tools/net_speedtest.py):
   - **LAN & Cloud Drive Video Stream Benchmark**: Reads files over `smb://`, `nfs://`, `webdav://`, `dav://`, `http://`, `https://`, `ftp://`, and local mounts using `xbmcvfs.File`. 1MB chunked reading with zero memory retention. Features a 2-second stabilization period, tracking real-time MB/s, Mbps, max/min speeds, and network stability rate `(min_speed / max_speed) * 100%`, with 4K Blu-ray streaming ratings. Runs `gc.collect()` and `ClearCache` on exit.
   - **Internet WAN Speed Test**: Measures public TCP DNS ping latency, CDN download, and upload throughput.

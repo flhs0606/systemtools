@@ -54,6 +54,14 @@ msgctxt "#30009"
 msgid "Cancel"
 msgstr "Cancel"
 
+msgctxt "#30010"
+msgid "DTB Protection & Management"
+msgstr "DTB Protection & Management"
+
+msgctxt "#30011"
+msgid "Free System RAM"
+msgstr "Free System RAM"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -567,3 +575,81 @@ msgstr "Backup Log Before Clearing"
 msgctxt "#30610"
 msgid "Create a backup file before truncating logs"
 msgstr "Create a backup file before truncating logs"
+
+# 30700 - 30719: DTB Protection
+msgctxt "#30700"
+msgid "DTB Protection & Management"
+msgstr "DTB Protection & Management"
+
+msgctxt "#30701"
+msgid "Current Status: Protected (ENABLE=no)"
+msgstr "Current Status: Protected (ENABLE=no)"
+
+msgctxt "#30702"
+msgid "Current Status: Unprotected (ENABLE=yes)"
+msgstr "Current Status: Unprotected (ENABLE=yes)"
+
+msgctxt "#30703"
+msgid "Enable DTB Protection (Prevent overwrite on tar update)"
+msgstr "Enable DTB Protection (Prevent overwrite on tar update)"
+
+msgctxt "#30704"
+msgid "Disable DTB Protection (Allow auto update)"
+msgstr "Disable DTB Protection (Allow auto update)"
+
+msgctxt "#30705"
+msgid "Backup Current DTB (/flash/dtb.img)"
+msgstr "Backup Current DTB (/flash/dtb.img)"
+
+msgctxt "#30706"
+msgid "Restore Custom DTB to /flash"
+msgstr "Restore Custom DTB to /flash"
+
+msgctxt "#30707"
+msgid "DTB protection enabled successfully."
+msgstr "DTB protection enabled successfully."
+
+msgctxt "#30708"
+msgid "DTB protection disabled."
+msgstr "DTB protection disabled."
+
+msgctxt "#30709"
+msgid "Current Model: %s"
+msgstr "Current Model: %s"
+
+msgctxt "#30710"
+msgid "Custom DTB backed up successfully."
+msgstr "Custom DTB backed up successfully."
+
+msgctxt "#30711"
+msgid "Custom DTB restored to /flash."
+msgstr "Custom DTB restored to /flash."
+
+msgctxt "#30712"
+msgid "No DTB backup file found."
+msgstr "No DTB backup file found."
+
+msgctxt "#30713"
+msgid "Skip overwriting DTB because protection is enabled."
+msgstr "Skip overwriting DTB because protection is enabled."
+
+# 30800 - 30819: RAM Cleaner
+msgctxt "#30800"
+msgid "Free System RAM"
+msgstr "Free System RAM"
+
+msgctxt "#30801"
+msgid "Cleaning system RAM and caches..."
+msgstr "Cleaning system RAM and caches..."
+
+msgctxt "#30802"
+msgid "RAM Cleaned Successfully (%s freed)."
+msgstr "RAM Cleaned Successfully (%s freed)."
+
+msgctxt "#30803"
+msgid "Memory Details: Total %s, Used %s, Available %s"
+msgstr "Memory Details: Total %s, Used %s, Available %s"
+
+msgctxt "#30804"
+msgid "Before: Available %s | After: Available %s"
+msgstr "Before: Available %s | After: Available %s"

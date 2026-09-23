@@ -13,7 +13,17 @@
 - **已保存版本管理**：随时查看所有版本、一键切换已保存版本、或删除不需要的历史版本释放存储空间。
 - **系统电源管理**：支持一键重启切换至内置 Android 系统、常规重启与关机。
 
-### 2. 全协议视频流测速与网络测速 (Network Speed Test)
+### 2. DTB 设备树防覆盖保护与管理 (DTB Protection & Management)
+- **一键开关防自动覆盖保护**：管理 `/storage/.config/dtb-autoupdate.conf`（`ENABLE=no` / `ENABLE=yes`）。开启后，无论是 CoreELEC 官方在线升级、本地更新，还是通过本工具箱切换版本，均**绝对禁止覆盖设备的 `dtb.img`**，彻底保全定制设备树（如千兆网卡补丁、蓝牙WiFi补丁等）。
+- **定制 DTB 一键备份与还原**：支持将当前正常运行的 `/flash/dtb.img` 备份至 `/storage/.config/custom_dtb.img`，即使误刷亦可随时一键写回 `/flash` 分区。
+- **实时设备硬件树检测**：读取 `/proc/device-tree/model` 直观查看当前盒子型号与设备树载入状态。
+
+### 3. 一键释放系统内存 RAM (Free System RAM)
+- **深层内核缓存回收 (Drop Caches)**：安全执行 `sync` 将脏数据刷写回存储后，向 `/proc/sys/vm/drop_caches` 写入 `3`，强制内核立即释放 PageCache、目录项 (dentries) 与 inode 索引节点占用的内存。
+- **Kodi 内部渲染与纹理缓存清理**：调用 Kodi 原生 `ClearCache` 清除积压的海报海量纹理与媒体流缓存，并触发 Python 堆垃圾回收 (`gc.collect`)。
+- **清理前后详细对比看板**：直观展示清理前后内存总计、已用、可用容量与释放的体积（MB/GB），极大缓解 2GB/4GB 内存电视盒子长时间运行后的卡顿与闪退。
+
+### 4. 全协议视频流测速与网络测速 (Network Speed Test)
 - **局域网 / 网盘全协议测速**：
   - 基于 Kodi 原生 `xbmcvfs`，全面覆盖 `smb://`、`nfs://`、`webdav://`、`dav://`、`http://`、`https://`、`ftp://` 及本地挂载路径。
   - 选择任意大文件视频（建议 ≥1GB），采用 1MB 分块读取，**随读随弃，零内存缓存**。
@@ -23,19 +33,19 @@
 - **互联网外网宽带测速**：
   - 测试 TCP 延迟 (Ping)、公网 CDN 多线程下载带宽与上传带宽。
 
-### 3. 存储读写测速 (Disk Benchmark)
+### 5. 存储读写测速 (Disk Benchmark)
 - 支持测试机顶盒内置存储 (eMMC)、SD 卡、U盘、外置移动硬盘或 NAS 挂载路径。
 - **顺序写入与读取** (MB/s)。
 - **4K 随机写入与读取** (MB/s 及 IOPS 吞吐量)。
 - 强制同步 (`fsync` / `O_SYNC` / `O_BINARY`) 避免系统缓存误报真实磁盘性能。
 - 退出与异常时通过 `finally` 安全自动清理临时测试文件。
 
-### 4. 系统网络配置 (Network Configuration)
+### 6. 系统网络配置 (Network Configuration)
 - 查看网卡接口（eth0、wlan0）、当前 IP、子网掩码、网关、DNS。
 - 支持一键切换 DHCP 自动获取或配置静态 IP / 网关 / DNS。
 - 针对 CoreELEC / LibreELEC 的 ConnMan 服务及通用 Linux `ip` 指令无缝集成。
 
-### 5. Kodi 日志管理与一键清理 (Kodi Log Cleaner)
+### 7. Kodi 日志管理与一键清理 (Kodi Log Cleaner)
 - 自动定位 Kodi 日志目录 (`special://logpath/`)。
 - 一键查看最近运行日志 (Tail Viewer)。
 - 一键清空 `kodi.log`，清理 `kodi.old.log` 及崩溃日志 (`kodi_crashlog*`)。

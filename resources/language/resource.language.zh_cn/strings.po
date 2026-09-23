@@ -54,6 +54,14 @@ msgctxt "#30009"
 msgid "Cancel"
 msgstr "取消"
 
+msgctxt "#30010"
+msgid "DTB Protection & Management"
+msgstr "DTB 设备树防覆盖保护"
+
+msgctxt "#30011"
+msgid "Free System RAM"
+msgstr "一键释放系统内存"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -567,3 +575,81 @@ msgstr "清空日志前自动备份"
 msgctxt "#30610"
 msgid "Create a backup file before truncating logs"
 msgstr "在清空或截断日志前自动生成 .bak 备份文件"
+
+# 30700 - 30719: DTB Protection
+msgctxt "#30700"
+msgid "DTB Protection & Management"
+msgstr "DTB 设备树防覆盖保护"
+
+msgctxt "#30701"
+msgid "Current Status: Protected (ENABLE=no)"
+msgstr "当前状态：已启用防覆盖保护 (ENABLE=no)"
+
+msgctxt "#30702"
+msgid "Current Status: Unprotected (ENABLE=yes)"
+msgstr "当前状态：未启用保护 (升级会覆盖 DTB)"
+
+msgctxt "#30703"
+msgid "Enable DTB Protection (Prevent overwrite on tar update)"
+msgstr "开启 DTB 保护 (禁止 tar 升级时覆盖设备树)"
+
+msgctxt "#30704"
+msgid "Disable DTB Protection (Allow auto update)"
+msgstr "关闭 DTB 保护 (允许升级覆盖)"
+
+msgctxt "#30705"
+msgid "Backup Current DTB (/flash/dtb.img)"
+msgstr "备份当前定制 DTB (/flash/dtb.img)"
+
+msgctxt "#30706"
+msgid "Restore Custom DTB to /flash"
+msgstr "还原定制 DTB 到 /flash"
+
+msgctxt "#30707"
+msgid "DTB protection enabled successfully."
+msgstr "DTB 防覆盖保护已开启，更新将不会修改设备树。"
+
+msgctxt "#30708"
+msgid "DTB protection disabled."
+msgstr "DTB 防覆盖保护已关闭。"
+
+msgctxt "#30709"
+msgid "Current Model: %s"
+msgstr "当前硬件型号：%s"
+
+msgctxt "#30710"
+msgid "Custom DTB backed up successfully."
+msgstr "定制 DTB 已成功备份至存储区。"
+
+msgctxt "#30711"
+msgid "Custom DTB restored to /flash."
+msgstr "定制 DTB 已成功还原写入 /flash 分区。"
+
+msgctxt "#30712"
+msgid "No DTB backup file found."
+msgstr "未找到任何已备份的定制 DTB 文件。"
+
+msgctxt "#30713"
+msgid "Skip overwriting DTB because protection is enabled."
+msgstr "已启用 DTB 保护，已跳过覆盖设备树文件。"
+
+# 30800 - 30819: RAM Cleaner
+msgctxt "#30800"
+msgid "Free System RAM"
+msgstr "一键释放系统内存"
+
+msgctxt "#30801"
+msgid "Cleaning system RAM and caches..."
+msgstr "正在深度释放系统内存与缓存..."
+
+msgctxt "#30802"
+msgid "RAM Cleaned Successfully (%s freed)."
+msgstr "系统内存释放完成，共释放空间：%s。"
+
+msgctxt "#30803"
+msgid "Memory Details: Total %s, Used %s, Available %s"
+msgstr "内存状态：总计 %s，已用 %s，可用 %s"
+
+msgctxt "#30804"
+msgid "Before: Available %s | After: Available %s"
+msgstr "释放前可用：%s | 释放后可用：%s"
