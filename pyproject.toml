@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plugin.program.systemtools"
+version = "1.0.0"
+description = "System Toolbox Kodi Add-on"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPL-2.0-or-later"}
+authors = [
+    {name = "Mephis"}
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "resources/lib"]

@@ -1,0 +1,569 @@
+# Kodi Media Center language file
+# Addon Name: System Tools
+# Addon id: plugin.program.systemtools
+# Addon Provider: Mephis
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.program.systemtools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-23 12:00+0000\n"
+"PO-Revision-Date: 2026-09-23 12:00+0000\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# 30000 - 30009: Common & Main Menu
+msgctxt "#30000"
+msgid "System Tools"
+msgstr "系统工具箱"
+
+msgctxt "#30001"
+msgid "Switch OS / CoreELEC Version"
+msgstr "CoreELEC系统与版本切换"
+
+msgctxt "#30002"
+msgid "Network Speed Test"
+msgstr "网络测速 (局域网/网盘/宽带)"
+
+msgctxt "#30003"
+msgid "Disk Benchmark"
+msgstr "存储读写测速"
+
+msgctxt "#30004"
+msgid "Network Configuration"
+msgstr "系统网络配置"
+
+msgctxt "#30005"
+msgid "Clear Kodi Logs"
+msgstr "清理Kodi日志"
+
+msgctxt "#30006"
+msgid "System Information"
+msgstr "系统信息"
+
+msgctxt "#30007"
+msgid "About"
+msgstr "关于"
+
+msgctxt "#30008"
+msgid "Settings"
+msgstr "设置"
+
+msgctxt "#30009"
+msgid "Cancel"
+msgstr "取消"
+
+# 30100 - 30149: CoreELEC Multi-version & Power
+msgctxt "#30101"
+msgid "Reboot to Android"
+msgstr "重启进入安卓系统"
+
+msgctxt "#30102"
+msgid "Reboot to CoreELEC / Recovery"
+msgstr "重启进入CoreELEC / Recovery"
+
+msgctxt "#30103"
+msgid "Reboot System"
+msgstr "常规重启系统"
+
+msgctxt "#30104"
+msgid "Power Off"
+msgstr "彻底关机"
+
+msgctxt "#30105"
+msgid "Are you sure you want to reboot to %s?"
+msgstr "确定要重启并切换至 %s 吗？"
+
+msgctxt "#30106"
+msgid "OS switch is not supported on this platform."
+msgstr "当前平台或环境不支持自动系统切换。"
+
+msgctxt "#30107"
+msgid "Current OS: %s"
+msgstr "当前检测系统：%s"
+
+msgctxt "#30110"
+msgid "CoreELEC Version Switcher"
+msgstr "CoreELEC 多版本管理与切换"
+
+msgctxt "#30111"
+msgid "Active Version: %s"
+msgstr "当前运行版本：%s"
+
+msgctxt "#30112"
+msgid "Switch to Selected Version"
+msgstr "一键切换已保存版本"
+
+msgctxt "#30113"
+msgid "Import New Version from .tar"
+msgstr "从 .tar 文件导入新版本"
+
+msgctxt "#30114"
+msgid "Backup Current System as New Version"
+msgstr "备份当前运行系统为新版本槽位"
+
+msgctxt "#30116"
+msgid "Delete Saved Version"
+msgstr "删除已保存版本"
+
+msgctxt "#30117"
+msgid "Enter Version Name:"
+msgstr "请输入版本名称（如 CE-21.3-Release 或 CE-Nightly）："
+
+msgctxt "#30118"
+msgid "Extracting tar package..."
+msgstr "正在解包 tar 文件（提取 KERNEL 与 SYSTEM）..."
+
+msgctxt "#30119"
+msgid "Writing system files to /flash..."
+msgstr "正在将系统文件写入 /flash 分区..."
+
+msgctxt "#30120"
+msgid "Version switched successfully! Rebooting now..."
+msgstr "版本切换成功！已同步数据并立即重启生效。"
+
+msgctxt "#30121"
+msgid "This feature is only supported on CoreELEC."
+msgstr "版本切换功能仅支持 CoreELEC 系统。"
+
+msgctxt "#30122"
+msgid "KERNEL or SYSTEM file not found in tar package."
+msgstr "未在 tar 安装包中找到 KERNEL 或 SYSTEM 核心文件。"
+
+msgctxt "#30123"
+msgid "Failed to remount /flash partition as writable."
+msgstr "挂载 /flash 分区为可读写失败，请检查系统权限。"
+
+msgctxt "#30124"
+msgid "Are you sure you want to switch to [%s] and reboot now?"
+msgstr "确定要切换到版本【%s】并立即重启系统吗？"
+
+msgctxt "#30125"
+msgid "No saved versions found. Please import a .tar or backup current system."
+msgstr "暂无可用的已保存版本，请先从 .tar 文件导入或备份当前系统。"
+
+msgctxt "#30126"
+msgid "Select CoreELEC .tar update package"
+msgstr "请选择 CoreELEC 的 .tar 升级包文件"
+
+msgctxt "#30127"
+msgid "Delete Source TAR Package"
+msgstr "删除原始 TAR 安装包"
+
+msgctxt "#30128"
+msgid "Version [%s] imported successfully!\nDo you want to delete the source .tar package (%s MB) to free up storage?"
+msgstr "版本【%s】解包导入成功！\n是否删除原始 .tar 安装包（%s MB）以释放存储空间？"
+
+msgctxt "#30129"
+msgid "Source .tar package deleted (%s MB freed)."
+msgstr "原始安装包已删除，释放了 %s MB 存储空间。"
+
+msgctxt "#30130"
+msgid "Do you want to switch to version [%s] and reboot now?"
+msgstr "是否立即切换到版本【%s】并重启系统生效？"
+
+msgctxt "#30131"
+msgid "Are you sure you want to permanently delete saved version [%s]?"
+msgstr "确定要永久删除已保存的版本【%s】吗？"
+
+msgctxt "#30132"
+msgid "Version [%s] deleted."
+msgstr "版本【%s】已删除。"
+
+msgctxt "#30133"
+msgid "Backing up current running system..."
+msgstr "正在备份当前运行的系统..."
+
+msgctxt "#30134"
+msgid "System backup [%s] saved to %s"
+msgstr "系统备份【%s】已保存至 %s"
+
+msgctxt "#30135"
+msgid "Continue in simulated/diagnostic mode?"
+msgstr "是否在模拟/诊断模式下继续运行？"
+
+# 30200 - 30249: Network Speed Test
+msgctxt "#30201"
+msgid "Testing latency..."
+msgstr "正在测试网络延迟..."
+
+msgctxt "#30202"
+msgid "Testing download speed..."
+msgstr "正在测试下载带宽..."
+
+msgctxt "#30203"
+msgid "Testing upload speed..."
+msgstr "正在测试上传带宽..."
+
+msgctxt "#30204"
+msgid "Speed test completed"
+msgstr "网络测速完成"
+
+msgctxt "#30205"
+msgid "Latency: %s ms"
+msgstr "网络延迟：%s ms"
+
+msgctxt "#30206"
+msgid "Download: %s Mbps (%s MB/s)"
+msgstr "下载速率：%s Mbps (%s MB/s)"
+
+msgctxt "#30207"
+msgid "Upload: %s Mbps (%s MB/s)"
+msgstr "上传速率：%s Mbps (%s MB/s)"
+
+msgctxt "#30208"
+msgid "Speed test cancelled"
+msgstr "测速已取消"
+
+msgctxt "#30209"
+msgid "Speed test failed: %s"
+msgstr "测速失败：%s"
+
+msgctxt "#30210"
+msgid "LAN & Cloud Drive Speed Test (SMB/NFS/WebDAV/Local)"
+msgstr "局域网/网盘视频流测速 (SMB/NFS/WebDAV/本地)"
+
+msgctxt "#30211"
+msgid "Internet WAN Speed Test"
+msgstr "互联网宽带测速 (外网带宽与延迟)"
+
+msgctxt "#30212"
+msgid "Select video file (>=1GB recommended) for speed test"
+msgstr "请选择测试视频文件 (建议大于等于 1GB)"
+
+msgctxt "#30213"
+msgid "Stabilization period (initial 2s)..."
+msgstr "网络传输连接稳定期 (前2秒不计入极值)..."
+
+msgctxt "#30214"
+msgid "Network Stability: %s%%"
+msgstr "网络稳定度：%s%%"
+
+msgctxt "#30215"
+msgid "Max Speed: %s MB/s | Min Speed: %s MB/s"
+msgstr "最高速度：%s MB/s | 最低速度：%s MB/s"
+
+msgctxt "#30216"
+msgid "Fully meets 4K Blu-ray full-speed playback requirements!"
+msgstr "🎉 完全满足 4K 蓝光原盘全速播放需求，播放极佳！"
+
+msgctxt "#30217"
+msgid "Meets basic Blu-ray playback, may stutter on peak bitrates."
+msgstr "基本符合蓝光原盘播放，极端高码率峰值可能微卡，建议继续优化网络。"
+
+msgctxt "#30218"
+msgid "Speed < 100 Mbps, playing Blu-ray remux will stutter!"
+msgstr "⚠️ 网络速度小于 100 Mbps，观看 4K 蓝光原盘将会卡顿，请排查网络！"
+
+msgctxt "#30219"
+msgid "Network stability is low (%s%% < 70%%), high jitter detected!"
+msgstr "⚠️ 网络稳定度偏低（%s%% < 70%%），波动较大，观看可能出现卡顿！"
+
+msgctxt "#30220"
+msgid "Protocol: %s"
+msgstr "文件协议：%s"
+
+msgctxt "#30221"
+msgid "Select Speed Test Category"
+msgstr "请选择测速来源类型"
+
+msgctxt "#30222"
+msgid "Mounted Cloud Drive / LAN Video (SMB/NFS/WebDAV)"
+msgstr "已挂载网盘 / 局域网视频 (SMB / NFS / WebDAV)"
+
+msgctxt "#30223"
+msgid "Local Storage / External Drive Large Video"
+msgstr "本地存储 / 外接硬盘大文件"
+
+msgctxt "#30224"
+msgid "No video file selected."
+msgstr "未选择任何视频文件。"
+
+msgctxt "#30225"
+msgid "Protocol not supported: %s\nPlease select SMB, NFS, WebDAV, or local file."
+msgstr "协议不支持：%s\n请选择 SMB / NFS / WebDAV / 本地文件。"
+
+msgctxt "#30226"
+msgid "Cannot open or read test file:\n%s"
+msgstr "无法打开或读取测试文件：\n%s"
+
+msgctxt "#30227"
+msgid "File size is %s GB (less than 1GB recommended).\nDo you want to continue?"
+msgstr "当前文件大小为 %s GB（小于 1GB 推荐值），测速可能较快结束。\n是否继续？"
+
+msgctxt "#30228"
+msgid "Streaming speed test in progress"
+msgstr "全协议网速测速中"
+
+msgctxt "#30229"
+msgid "Waiting for file response, please wait..."
+msgstr "等待文件响应，请稍候..."
+
+msgctxt "#30230"
+msgid "Cannot open test file. Please check mount and network connection."
+msgstr "无法打开测试文件，请检查网络挂载及连接。"
+
+msgctxt "#30231"
+msgid "Stream Speed Test Report"
+msgstr "局域网 / 网盘流媒体测速报告"
+
+msgctxt "#30232"
+msgid "Actual Test Duration: %s s"
+msgstr "实际测速耗时：%s 秒"
+
+msgctxt "#30233"
+msgid "Total Transferred: %s MB"
+msgstr "累计读取数据：%s MB"
+
+msgctxt "#30234"
+msgid "Average Speed: %s MB/s (%s Mbps)"
+msgstr "平均读取速度：%s MB/s (%s Mbps)"
+
+msgctxt "#30235"
+msgid "Max Speed: %s MB/s"
+msgstr "最高读取速度：%s MB/s"
+
+msgctxt "#30236"
+msgid "Min Speed: %s MB/s"
+msgstr "最低读取速度：%s MB/s"
+
+msgctxt "#30237"
+msgid "Blu-ray Playback Rating: %s"
+msgstr "蓝光播放评估：%s"
+
+msgctxt "#30238"
+msgid "Unknown Protocol"
+msgstr "未知协议"
+
+msgctxt "#30239"
+msgid "Local / Mount Path"
+msgstr "本地 / 挂载路径"
+
+msgctxt "#30240"
+msgid "Superb network speed (>300 Mbps), perfectly smooth for any high bitrate Blu-ray!"
+msgstr "🎉 网络速度极佳（> 300 Mbps），完全无需担心任何超大码率原盘卡顿！"
+
+msgctxt "#30241"
+msgid "No valid speed test data collected."
+msgstr "未采集到有效测速数据，请重新测试。"
+
+# 30300 - 30349: Disk Benchmark
+msgctxt "#30301"
+msgid "Select storage directory to benchmark"
+msgstr "请选择测速目标存储目录"
+
+msgctxt "#30302"
+msgid "Select test file size"
+msgstr "请选择测试文件大小"
+
+msgctxt "#30303"
+msgid "Testing Sequential Write..."
+msgstr "正在测试顺序写入速度..."
+
+msgctxt "#30304"
+msgid "Testing Sequential Read..."
+msgstr "正在测试顺序读取速度..."
+
+msgctxt "#30305"
+msgid "Testing 4K Random Write..."
+msgstr "正在测试4K随机写入速度(IOPS)..."
+
+msgctxt "#30306"
+msgid "Testing 4K Random Read..."
+msgstr "正在测试4K随机读取速度(IOPS)..."
+
+msgctxt "#30307"
+msgid "Disk benchmark completed"
+msgstr "存储测速完成"
+
+msgctxt "#30308"
+msgid "Benchmark Report"
+msgstr "存储测速报告"
+
+msgctxt "#30309"
+msgid "Target: %s"
+msgstr "测试路径：%s"
+
+msgctxt "#30310"
+msgid "Size: %s MB"
+msgstr "测试文件：%s MB"
+
+msgctxt "#30311"
+msgid "Sequential Write: %s MB/s"
+msgstr "顺序写入：%s MB/s"
+
+msgctxt "#30312"
+msgid "Sequential Read: %s MB/s"
+msgstr "顺序读取：%s MB/s"
+
+msgctxt "#30313"
+msgid "4K Random Write: %s MB/s (%s IOPS)"
+msgstr "4K随机写入：%s MB/s (%s IOPS)"
+
+msgctxt "#30314"
+msgid "4K Random Read: %s MB/s (%s IOPS)"
+msgstr "4K随机读取：%s MB/s (%s IOPS)"
+
+msgctxt "#30315"
+msgid "Benchmark cancelled"
+msgstr "存储测速已取消"
+
+msgctxt "#30316"
+msgid "Kodi Home (%s)"
+msgstr "Kodi 主目录 (%s)"
+
+msgctxt "#30317"
+msgid "Kodi Temp (%s)"
+msgstr "Kodi 临时目录 (%s)"
+
+msgctxt "#30318"
+msgid "Browse Custom Directory (USB / SD / External)..."
+msgstr "自定义浏览目录 (U盘 / SD卡 / 外接存储)..."
+
+# 30400 - 30449: Network Configuration
+msgctxt "#30401"
+msgid "Current Network Status"
+msgstr "当前网络状态"
+
+msgctxt "#30402"
+msgid "Interface: %s"
+msgstr "网卡接口：%s"
+
+msgctxt "#30403"
+msgid "IP Address: %s"
+msgstr "IP 地址：%s"
+
+msgctxt "#30404"
+msgid "Subnet Mask: %s"
+msgstr "子网掩码：%s"
+
+msgctxt "#30405"
+msgid "Gateway: %s"
+msgstr "默认网关：%s"
+
+msgctxt "#30406"
+msgid "DNS: %s"
+msgstr "DNS 服务器：%s"
+
+msgctxt "#30407"
+msgid "Enable DHCP (Auto IP)"
+msgstr "开启 DHCP（自动获取 IP）"
+
+msgctxt "#30408"
+msgid "Configure Static IP"
+msgstr "配置静态 IP 地址"
+
+msgctxt "#30409"
+msgid "Enter IP address:"
+msgstr "请输入静态 IP 地址："
+
+msgctxt "#30410"
+msgid "Enter Gateway:"
+msgstr "请输入网关地址："
+
+msgctxt "#30411"
+msgid "Enter DNS (comma separated):"
+msgstr "请输入 DNS 服务器（多个用逗号隔开）："
+
+msgctxt "#30412"
+msgid "Network settings applied successfully."
+msgstr "网络配置已成功应用并生效。"
+
+msgctxt "#30413"
+msgid "Network configuration failed: %s"
+msgstr "网络配置失败：%s"
+
+msgctxt "#30414"
+msgid "Invalid IP address format."
+msgstr "IP 地址格式不正确，请检查。"
+
+msgctxt "#30415"
+msgid "Enter Netmask:"
+msgstr "请输入子网掩码："
+
+msgctxt "#30416"
+msgid "Switch interface '%s' to DHCP?"
+msgstr "是否将网卡 '%s' 切换为 DHCP 自动获取 IP？"
+
+msgctxt "#30417"
+msgid "Apply these static network settings?"
+msgstr "是否应用并生效以上静态网络配置？"
+
+msgctxt "#30418"
+msgid "No active network interfaces detected."
+msgstr "未检测到任何活跃的网络接口。"
+
+# 30500 - 30549: Log Cleaner
+msgctxt "#30501"
+msgid "Kodi Log Manager"
+msgstr "Kodi 日志管理"
+
+msgctxt "#30502"
+msgid "View Kodi Log"
+msgstr "查看当前 Kodi 运行日志"
+
+msgctxt "#30503"
+msgid "Clear Current Log (kodi.log)"
+msgstr "清空当前日志 (kodi.log)"
+
+msgctxt "#30504"
+msgid "Clear All Logs (including old/crash logs)"
+msgstr "清空全部日志（含历史日志和崩溃日志）"
+
+msgctxt "#30505"
+msgid "Are you sure you want to clear Kodi logs?"
+msgstr "确定要清空 Kodi 日志文件吗？此操作不可撤销。"
+
+msgctxt "#30506"
+msgid "Logs cleared successfully (%s freed)."
+msgstr "日志清理完成，共释放空间：%s。"
+
+msgctxt "#30507"
+msgid "No log files found."
+msgstr "未找到任何日志文件。"
+
+msgctxt "#30508"
+msgid "Current Log Size: %s"
+msgstr "当前日志占用大小：%s"
+
+# 30600 - 30649: Settings
+msgctxt "#30601"
+msgid "Auto Delete TAR After Import"
+msgstr "导入后自动删除原始 TAR 包"
+
+msgctxt "#30602"
+msgid "Automatically delete source .tar package without prompt after extraction"
+msgstr "解包成功后自动删除原始安装包，无需每次确认"
+
+msgctxt "#30603"
+msgid "Speedtest Duration (s)"
+msgstr "测速测试时长 (秒)"
+
+msgctxt "#30604"
+msgid "Duration in seconds for download speed test"
+msgstr "互联网下载测速的最大持续时间（秒）"
+
+msgctxt "#30605"
+msgid "Custom Speedtest URL"
+msgstr "自定义测速文件 URL"
+
+msgctxt "#30606"
+msgid "Optional custom test file URL"
+msgstr "可选的自定义测速下载文件链接"
+
+msgctxt "#30607"
+msgid "Default Disk Test Size (MB)"
+msgstr "默认磁盘测速大小 (MB)"
+
+msgctxt "#30608"
+msgid "Test file size in MB for disk read/write benchmarks"
+msgstr "磁盘顺序与4K读写测速时使用的测试文件大小 (MB)"
+
+msgctxt "#30609"
+msgid "Backup Log Before Clearing"
+msgstr "清空日志前自动备份"
+
+msgctxt "#30610"
+msgid "Create a backup file before truncating logs"
+msgstr "在清空或截断日志前自动生成 .bak 备份文件"

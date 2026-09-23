@@ -1,0 +1,569 @@
+# Kodi Media Center language file
+# Addon Name: System Tools
+# Addon id: plugin.program.systemtools
+# Addon Provider: Mephis
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.program.systemtools\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-23 12:00+0000\n"
+"PO-Revision-Date: 2026-09-23 12:00+0000\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# 30000 - 30009: Common & Main Menu
+msgctxt "#30000"
+msgid "System Tools"
+msgstr "System Tools"
+
+msgctxt "#30001"
+msgid "Switch OS / CoreELEC Version"
+msgstr "CoreELEC System & Version Switcher"
+
+msgctxt "#30002"
+msgid "Network Speed Test"
+msgstr "Network Speed Test (LAN/Cloud/WAN)"
+
+msgctxt "#30003"
+msgid "Disk Benchmark"
+msgstr "Disk Benchmark"
+
+msgctxt "#30004"
+msgid "Network Configuration"
+msgstr "Network Configuration"
+
+msgctxt "#30005"
+msgid "Clear Kodi Logs"
+msgstr "Clear Kodi Logs"
+
+msgctxt "#30006"
+msgid "System Information"
+msgstr "System Information"
+
+msgctxt "#30007"
+msgid "About"
+msgstr "About"
+
+msgctxt "#30008"
+msgid "Settings"
+msgstr "Settings"
+
+msgctxt "#30009"
+msgid "Cancel"
+msgstr "Cancel"
+
+# 30100 - 30149: CoreELEC Multi-version & Power
+msgctxt "#30101"
+msgid "Reboot to Android"
+msgstr "Reboot to Android"
+
+msgctxt "#30102"
+msgid "Reboot to CoreELEC / Recovery"
+msgstr "Reboot to CoreELEC / Recovery"
+
+msgctxt "#30103"
+msgid "Reboot System"
+msgstr "Reboot System"
+
+msgctxt "#30104"
+msgid "Power Off"
+msgstr "Power Off"
+
+msgctxt "#30105"
+msgid "Are you sure you want to reboot to %s?"
+msgstr "Are you sure you want to reboot to %s?"
+
+msgctxt "#30106"
+msgid "OS switch is not supported on this platform."
+msgstr "OS switch is not supported on this platform."
+
+msgctxt "#30107"
+msgid "Current OS: %s"
+msgstr "Current OS: %s"
+
+msgctxt "#30110"
+msgid "CoreELEC Version Switcher"
+msgstr "CoreELEC Multi-version Switcher"
+
+msgctxt "#30111"
+msgid "Active Version: %s"
+msgstr "Active Version: %s"
+
+msgctxt "#30112"
+msgid "Switch to Selected Version"
+msgstr "Switch to Selected Version"
+
+msgctxt "#30113"
+msgid "Import New Version from .tar"
+msgstr "Import New Version from .tar"
+
+msgctxt "#30114"
+msgid "Backup Current System as New Version"
+msgstr "Backup Current System as New Version"
+
+msgctxt "#30116"
+msgid "Delete Saved Version"
+msgstr "Delete Saved Version"
+
+msgctxt "#30117"
+msgid "Enter Version Name:"
+msgstr "Enter Version Name (e.g. CE-21.3-Release or CE-Nightly):"
+
+msgctxt "#30118"
+msgid "Extracting tar package..."
+msgstr "Extracting tar package (extracting KERNEL & SYSTEM)..."
+
+msgctxt "#30119"
+msgid "Writing system files to /flash..."
+msgstr "Writing system files to /flash partition..."
+
+msgctxt "#30120"
+msgid "Version switched successfully! Rebooting now..."
+msgstr "Version switched successfully! Syncing and rebooting now..."
+
+msgctxt "#30121"
+msgid "This feature is only supported on CoreELEC."
+msgstr "This feature is only supported on CoreELEC."
+
+msgctxt "#30122"
+msgid "KERNEL or SYSTEM file not found in tar package."
+msgstr "KERNEL or SYSTEM file not found in tar package."
+
+msgctxt "#30123"
+msgid "Failed to remount /flash partition as writable."
+msgstr "Failed to remount /flash partition as writable."
+
+msgctxt "#30124"
+msgid "Are you sure you want to switch to [%s] and reboot now?"
+msgstr "Are you sure you want to switch to [%s] and reboot now?"
+
+msgctxt "#30125"
+msgid "No saved versions found. Please import a .tar or backup current system."
+msgstr "No saved versions found. Please import a .tar or backup current system."
+
+msgctxt "#30126"
+msgid "Select CoreELEC .tar update package"
+msgstr "Select CoreELEC .tar update package"
+
+msgctxt "#30127"
+msgid "Delete Source TAR Package"
+msgstr "Delete Source TAR Package"
+
+msgctxt "#30128"
+msgid "Version [%s] imported successfully!\nDo you want to delete the source .tar package (%s MB) to free up storage?"
+msgstr "Version [%s] imported successfully!\nDo you want to delete the source .tar package (%s MB) to free up storage?"
+
+msgctxt "#30129"
+msgid "Source .tar package deleted (%s MB freed)."
+msgstr "Source .tar package deleted (%s MB freed)."
+
+msgctxt "#30130"
+msgid "Do you want to switch to version [%s] and reboot now?"
+msgstr "Do you want to switch to version [%s] and reboot now?"
+
+msgctxt "#30131"
+msgid "Are you sure you want to permanently delete saved version [%s]?"
+msgstr "Are you sure you want to permanently delete saved version [%s]?"
+
+msgctxt "#30132"
+msgid "Version [%s] deleted."
+msgstr "Version [%s] deleted."
+
+msgctxt "#30133"
+msgid "Backing up current running system..."
+msgstr "Backing up current running system..."
+
+msgctxt "#30134"
+msgid "System backup [%s] saved to %s"
+msgstr "System backup [%s] saved to %s"
+
+msgctxt "#30135"
+msgid "Continue in simulated/diagnostic mode?"
+msgstr "Continue in simulated/diagnostic mode?"
+
+# 30200 - 30249: Network Speed Test
+msgctxt "#30201"
+msgid "Testing latency..."
+msgstr "Testing latency..."
+
+msgctxt "#30202"
+msgid "Testing download speed..."
+msgstr "Testing download speed..."
+
+msgctxt "#30203"
+msgid "Testing upload speed..."
+msgstr "Testing upload speed..."
+
+msgctxt "#30204"
+msgid "Speed test completed"
+msgstr "Speed test completed"
+
+msgctxt "#30205"
+msgid "Latency: %s ms"
+msgstr "Latency: %s ms"
+
+msgctxt "#30206"
+msgid "Download: %s Mbps (%s MB/s)"
+msgstr "Download: %s Mbps (%s MB/s)"
+
+msgctxt "#30207"
+msgid "Upload: %s Mbps (%s MB/s)"
+msgstr "Upload: %s Mbps (%s MB/s)"
+
+msgctxt "#30208"
+msgid "Speed test cancelled"
+msgstr "Speed test cancelled"
+
+msgctxt "#30209"
+msgid "Speed test failed: %s"
+msgstr "Speed test failed: %s"
+
+msgctxt "#30210"
+msgid "LAN & Cloud Drive Speed Test (SMB/NFS/WebDAV/Local)"
+msgstr "LAN & Cloud Drive Speed Test (SMB/NFS/WebDAV/Local)"
+
+msgctxt "#30211"
+msgid "Internet WAN Speed Test"
+msgstr "Internet WAN Speed Test"
+
+msgctxt "#30212"
+msgid "Select video file (>=1GB recommended) for speed test"
+msgstr "Select video file (>=1GB recommended) for speed test"
+
+msgctxt "#30213"
+msgid "Stabilization period (initial 2s)..."
+msgstr "Connection stabilization period (initial 2s)..."
+
+msgctxt "#30214"
+msgid "Network Stability: %s%%"
+msgstr "Network Stability: %s%%"
+
+msgctxt "#30215"
+msgid "Max Speed: %s MB/s | Min Speed: %s MB/s"
+msgstr "Max Speed: %s MB/s | Min Speed: %s MB/s"
+
+msgctxt "#30216"
+msgid "Fully meets 4K Blu-ray full-speed playback requirements!"
+msgstr "🎉 Fully meets 4K Blu-ray full-speed playback requirements!"
+
+msgctxt "#30217"
+msgid "Meets basic Blu-ray playback, may stutter on peak bitrates."
+msgstr "Meets basic Blu-ray playback, may stutter on peak bitrates."
+
+msgctxt "#30218"
+msgid "Speed < 100 Mbps, playing Blu-ray remux will stutter!"
+msgstr "⚠️ Speed < 100 Mbps, playing 4K Blu-ray remux will stutter!"
+
+msgctxt "#30219"
+msgid "Network stability is low (%s%% < 70%%), high jitter detected!"
+msgstr "⚠️ Network stability is low (%s%% < 70%%), high jitter detected!"
+
+msgctxt "#30220"
+msgid "Protocol: %s"
+msgstr "Protocol: %s"
+
+msgctxt "#30221"
+msgid "Select Speed Test Category"
+msgstr "Select Speed Test Category"
+
+msgctxt "#30222"
+msgid "Mounted Cloud Drive / LAN Video (SMB/NFS/WebDAV)"
+msgstr "Mounted Cloud Drive / LAN Video (SMB/NFS/WebDAV)"
+
+msgctxt "#30223"
+msgid "Local Storage / External Drive Large Video"
+msgstr "Local Storage / External Drive Large Video"
+
+msgctxt "#30224"
+msgid "No video file selected."
+msgstr "No video file selected."
+
+msgctxt "#30225"
+msgid "Protocol not supported: %s\nPlease select SMB, NFS, WebDAV, or local file."
+msgstr "Protocol not supported: %s\nPlease select SMB, NFS, WebDAV, or local file."
+
+msgctxt "#30226"
+msgid "Cannot open or read test file:\n%s"
+msgstr "Cannot open or read test file:\n%s"
+
+msgctxt "#30227"
+msgid "File size is %s GB (less than 1GB recommended).\nDo you want to continue?"
+msgstr "File size is %s GB (less than 1GB recommended).\nDo you want to continue?"
+
+msgctxt "#30228"
+msgid "Streaming speed test in progress"
+msgstr "Streaming speed test in progress"
+
+msgctxt "#30229"
+msgid "Waiting for file response, please wait..."
+msgstr "Waiting for file response, please wait..."
+
+msgctxt "#30230"
+msgid "Cannot open test file. Please check mount and network connection."
+msgstr "Cannot open test file. Please check mount and network connection."
+
+msgctxt "#30231"
+msgid "Stream Speed Test Report"
+msgstr "Stream Speed Test Report"
+
+msgctxt "#30232"
+msgid "Actual Test Duration: %s s"
+msgstr "Actual Test Duration: %s s"
+
+msgctxt "#30233"
+msgid "Total Transferred: %s MB"
+msgstr "Total Transferred: %s MB"
+
+msgctxt "#30234"
+msgid "Average Speed: %s MB/s (%s Mbps)"
+msgstr "Average Speed: %s MB/s (%s Mbps)"
+
+msgctxt "#30235"
+msgid "Max Speed: %s MB/s"
+msgstr "Max Speed: %s MB/s"
+
+msgctxt "#30236"
+msgid "Min Speed: %s MB/s"
+msgstr "Min Speed: %s MB/s"
+
+msgctxt "#30237"
+msgid "Blu-ray Playback Rating: %s"
+msgstr "Blu-ray Playback Rating: %s"
+
+msgctxt "#30238"
+msgid "Unknown Protocol"
+msgstr "Unknown Protocol"
+
+msgctxt "#30239"
+msgid "Local / Mount Path"
+msgstr "Local / Mount Path"
+
+msgctxt "#30240"
+msgid "Superb network speed (>300 Mbps), perfectly smooth for any high bitrate Blu-ray!"
+msgstr "🎉 Superb network speed (>300 Mbps), perfectly smooth for any high bitrate Blu-ray!"
+
+msgctxt "#30241"
+msgid "No valid speed test data collected."
+msgstr "No valid speed test data collected."
+
+# 30300 - 30349: Disk Benchmark
+msgctxt "#30301"
+msgid "Select storage directory to benchmark"
+msgstr "Select storage directory to benchmark"
+
+msgctxt "#30302"
+msgid "Select test file size"
+msgstr "Select test file size"
+
+msgctxt "#30303"
+msgid "Testing Sequential Write..."
+msgstr "Testing Sequential Write..."
+
+msgctxt "#30304"
+msgid "Testing Sequential Read..."
+msgstr "Testing Sequential Read..."
+
+msgctxt "#30305"
+msgid "Testing 4K Random Write..."
+msgstr "Testing 4K Random Write..."
+
+msgctxt "#30306"
+msgid "Testing 4K Random Read..."
+msgstr "Testing 4K Random Read..."
+
+msgctxt "#30307"
+msgid "Disk benchmark completed"
+msgstr "Disk benchmark completed"
+
+msgctxt "#30308"
+msgid "Benchmark Report"
+msgstr "Benchmark Report"
+
+msgctxt "#30309"
+msgid "Target: %s"
+msgstr "Target: %s"
+
+msgctxt "#30310"
+msgid "Size: %s MB"
+msgstr "Size: %s MB"
+
+msgctxt "#30311"
+msgid "Sequential Write: %s MB/s"
+msgstr "Sequential Write: %s MB/s"
+
+msgctxt "#30312"
+msgid "Sequential Read: %s MB/s"
+msgstr "Sequential Read: %s MB/s"
+
+msgctxt "#30313"
+msgid "4K Random Write: %s MB/s (%s IOPS)"
+msgstr "4K Random Write: %s MB/s (%s IOPS)"
+
+msgctxt "#30314"
+msgid "4K Random Read: %s MB/s (%s IOPS)"
+msgstr "4K Random Read: %s MB/s (%s IOPS)"
+
+msgctxt "#30315"
+msgid "Benchmark cancelled"
+msgstr "Benchmark cancelled"
+
+msgctxt "#30316"
+msgid "Kodi Home (%s)"
+msgstr "Kodi Home (%s)"
+
+msgctxt "#30317"
+msgid "Kodi Temp (%s)"
+msgstr "Kodi Temp (%s)"
+
+msgctxt "#30318"
+msgid "Browse Custom Directory (USB / SD / External)..."
+msgstr "Browse Custom Directory (USB / SD / External)..."
+
+# 30400 - 30449: Network Configuration
+msgctxt "#30401"
+msgid "Current Network Status"
+msgstr "Current Network Status"
+
+msgctxt "#30402"
+msgid "Interface: %s"
+msgstr "Interface: %s"
+
+msgctxt "#30403"
+msgid "IP Address: %s"
+msgstr "IP Address: %s"
+
+msgctxt "#30404"
+msgid "Subnet Mask: %s"
+msgstr "Subnet Mask: %s"
+
+msgctxt "#30405"
+msgid "Gateway: %s"
+msgstr "Gateway: %s"
+
+msgctxt "#30406"
+msgid "DNS: %s"
+msgstr "DNS: %s"
+
+msgctxt "#30407"
+msgid "Enable DHCP (Auto IP)"
+msgstr "Enable DHCP (Auto IP)"
+
+msgctxt "#30408"
+msgid "Configure Static IP"
+msgstr "Configure Static IP"
+
+msgctxt "#30409"
+msgid "Enter IP address:"
+msgstr "Enter IP address:"
+
+msgctxt "#30410"
+msgid "Enter Gateway:"
+msgstr "Enter Gateway:"
+
+msgctxt "#30411"
+msgid "Enter DNS (comma separated):"
+msgstr "Enter DNS (comma separated):"
+
+msgctxt "#30412"
+msgid "Network settings applied successfully."
+msgstr "Network settings applied successfully."
+
+msgctxt "#30413"
+msgid "Network configuration failed: %s"
+msgstr "Network configuration failed: %s"
+
+msgctxt "#30414"
+msgid "Invalid IP address format."
+msgstr "Invalid IP address format."
+
+msgctxt "#30415"
+msgid "Enter Netmask:"
+msgstr "Enter Netmask:"
+
+msgctxt "#30416"
+msgid "Switch interface '%s' to DHCP?"
+msgstr "Switch interface '%s' to DHCP?"
+
+msgctxt "#30417"
+msgid "Apply these static network settings?"
+msgstr "Apply these static network settings?"
+
+msgctxt "#30418"
+msgid "No active network interfaces detected."
+msgstr "No active network interfaces detected."
+
+# 30500 - 30549: Log Cleaner
+msgctxt "#30501"
+msgid "Kodi Log Manager"
+msgstr "Kodi Log Manager"
+
+msgctxt "#30502"
+msgid "View Kodi Log"
+msgstr "View Kodi Log"
+
+msgctxt "#30503"
+msgid "Clear Current Log (kodi.log)"
+msgstr "Clear Current Log (kodi.log)"
+
+msgctxt "#30504"
+msgid "Clear All Logs (including old/crash logs)"
+msgstr "Clear All Logs (including old/crash logs)"
+
+msgctxt "#30505"
+msgid "Are you sure you want to clear Kodi logs?"
+msgstr "Are you sure you want to clear Kodi logs?"
+
+msgctxt "#30506"
+msgid "Logs cleared successfully (%s freed)."
+msgstr "Logs cleared successfully (%s freed)."
+
+msgctxt "#30507"
+msgid "No log files found."
+msgstr "No log files found."
+
+msgctxt "#30508"
+msgid "Current Log Size: %s"
+msgstr "Current Log Size: %s"
+
+# 30600 - 30649: Settings
+msgctxt "#30601"
+msgid "Auto Delete TAR After Import"
+msgstr "Auto Delete TAR After Import"
+
+msgctxt "#30602"
+msgid "Automatically delete source .tar package without prompt after extraction"
+msgstr "Automatically delete source .tar package without prompt after extraction"
+
+msgctxt "#30603"
+msgid "Speedtest Duration (s)"
+msgstr "Speedtest Duration (s)"
+
+msgctxt "#30604"
+msgid "Duration in seconds for download speed test"
+msgstr "Duration in seconds for download speed test"
+
+msgctxt "#30605"
+msgid "Custom Speedtest URL"
+msgstr "Custom Speedtest URL"
+
+msgctxt "#30606"
+msgid "Optional custom test file URL"
+msgstr "Optional custom test file URL"
+
+msgctxt "#30607"
+msgid "Default Disk Test Size (MB)"
+msgstr "Default Disk Test Size (MB)"
+
+msgctxt "#30608"
+msgid "Test file size in MB for disk read/write benchmarks"
+msgstr "Test file size in MB for disk read/write benchmarks"
+
+msgctxt "#30609"
+msgid "Backup Log Before Clearing"
+msgstr "Backup Log Before Clearing"
+
+msgctxt "#30610"
+msgid "Create a backup file before truncating logs"
+msgstr "Create a backup file before truncating logs"
