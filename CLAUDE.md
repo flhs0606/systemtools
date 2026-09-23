@@ -33,6 +33,12 @@ Package the addon into an installable Kodi ZIP (`dist/plugin.program.systemtools
 python scripts/package.py
 ```
 
+Generate 512x512 icon and 1280x720 fanart assets:
+```bash
+python scripts/generate_icon.py
+python scripts/generate_fanart.py
+```
+
 ### Linting
 ```bash
 flake8 resources/ addon.py tests/
