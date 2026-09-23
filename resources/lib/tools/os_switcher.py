@@ -29,7 +29,7 @@ from ..common.kodi_ui import (
 )
 from ..common.logger import debug, error, info
 from ..common.os_detect import OSType, get_system_info
-from ..common.system_exec import execute_reboot, run_command
+from ..common.system_exec import run_command
 from .base_tool import BaseTool, ToolRegistry
 from .dtb_tool import is_dtb_protected
 
@@ -126,11 +126,8 @@ class OsSwitcherTool(BaseTool):
             f"2. {get_string(30113, 'Import New Version from .tar')}",
             f"3. {get_string(30114, 'Backup Current System as New Version')}",
             f"4. {get_string(30116, 'Delete Saved Version')}",
-            f"5. {get_string(30101, 'Reboot to Android')}",
-            f"6. {get_string(30103, 'Reboot System')}",
-            f"7. {get_string(30104, 'Power Off')}",
         ]
-        action_map = ["switch", "import", "backup", "delete", "reboot_android", "reboot_normal", "poweroff"]
+        action_map = ["switch", "import", "backup", "delete"]
 
         status_header = f"{title} [{get_string(30111, 'Active Version: %s') % active_ver}]"
         idx = dialog_select(status_header, menu_items)
@@ -146,15 +143,6 @@ class OsSwitcherTool(BaseTool):
             self._action_backup_current(title)
         elif action == "delete":
             self._action_delete_version(title)
-        elif action == "reboot_android":
-            if dialog_yesno(title, get_string(30105, "Are you sure you want to reboot to %s?") % "Android"):
-                execute_reboot("android")
-        elif action == "reboot_normal":
-            if dialog_yesno(title, get_string(30105, "Are you sure you want to reboot to %s?") % "Reboot"):
-                execute_reboot("normal")
-        elif action == "poweroff":
-            if dialog_yesno(title, get_string(30105, "Are you sure you want to reboot to %s?") % "Power Off"):
-                execute_reboot("poweroff")
 
     def _ensure_dirs(self) -> None:
         os.makedirs(self.versions_dir, exist_ok=True)
