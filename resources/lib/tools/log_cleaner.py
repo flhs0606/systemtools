@@ -111,7 +111,7 @@ class LogCleanerTool(BaseTool):
             with open(active["path"], "r", encoding="utf-8", errors="replace") as f:
                 lines = f.readlines()
         except Exception as e:
-            dialog_ok("Log Viewer", f"Failed to read log: {e}")
+            dialog_ok(get_string(30501, "Kodi Log Manager"), get_string(30509, "Failed to read log: %s") % str(e))
             return
 
         tail_lines = lines[-max_lines:]
@@ -144,7 +144,7 @@ class LogCleanerTool(BaseTool):
             show_notification(title, msg)
         except Exception as e:
             error(f"Failed to truncate log {active['path']}: {e}")
-            dialog_ok(title, f"Failed to clear log: {e}")
+            dialog_ok(title, get_string(30510, "Failed to clear log: %s") % str(e))
 
     def _clear_all_logs(self, title: str, log_files: List[Dict]) -> None:
         confirm_msg = get_string(30505, "Are you sure you want to clear Kodi logs?")

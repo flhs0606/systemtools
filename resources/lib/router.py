@@ -81,27 +81,30 @@ def show_about_info() -> None:
     sys_info = get_system_info()
     addon = get_addon()
     version = addon.getAddonInfo("version") if addon else "1.0.0"
+    dual_boot_str = get_string(30016, "Yes") if sys_info.dual_boot_supported else get_string(30017, "No")
 
     info_lines = [
-        "=== Kodi System Toolbox ===",
+        f"=== {get_string(30000, 'System Tools')} ===",
         f"Version: {version}",
-        f"Author: Mephis",
+        "Author: Mephis",
         "License: GPL-2.0-or-later",
         "--------------------------------------------------",
-        f"Operating System: {sys_info.os_type}",
-        f"Architecture: {sys_info.arch}",
-        f"Hardware/SoC: {sys_info.soc}",
-        f"Dual-Boot Support: {'Yes' if sys_info.dual_boot_supported else 'No'}",
-        f"Python Runtime: {sys.version.split()[0]}",
+        get_string(30012, "Operating System: %s") % sys_info.os_type,
+        get_string(30013, "Architecture: %s") % sys_info.arch,
+        get_string(30014, "Hardware/SoC: %s") % sys_info.soc,
+        get_string(30015, "Dual-Boot Support: %s") % dual_boot_str,
+        get_string(30018, "Python Runtime: %s") % sys.version.split()[0],
         "--------------------------------------------------",
-        "Features Included:",
-        "  1. Switch OS (CoreELEC / LibreELEC / Android)",
-        "  2. Network Speed Test (Ping, Download, Upload)",
-        "  3. Disk Benchmark (Sequential & 4K Random IOPS)",
-        "  4. Network Configuration (IP, Gateway, DNS)",
-        "  5. Kodi Log Viewer & Cleaner",
+        get_string(30019, "Toolbox Features:"),
+        f"  1. {get_string(30001, 'CoreELEC System & Version Switcher')}",
+        f"  2. {get_string(30700, 'DTB Protection & Management')}",
+        f"  3. {get_string(30800, 'Free System RAM')}",
+        f"  4. {get_string(30002, 'Network Speed Test')}",
+        f"  5. {get_string(30003, 'Disk Benchmark')}",
+        f"  6. {get_string(30004, 'Network Configuration')}",
+        f"  7. {get_string(30005, 'Clear Kodi Logs')}",
     ]
-    dialog_textviewer("About & System Info", "\n".join(info_lines))
+    dialog_textviewer(get_string(30006, "System Information"), "\n".join(info_lines))
 
 
 def route(argv: list) -> None:
@@ -127,4 +130,4 @@ def route(argv: list) -> None:
         dispatched = ToolRegistry.dispatch(action, params)
         if not dispatched:
             error(f"Unknown action requested: {action}")
-            show_notification("System Tools", f"Unknown action: {action}")
+            show_notification(get_string(30000, "System Tools"), get_string(30020, "Unknown Action: %s") % action)

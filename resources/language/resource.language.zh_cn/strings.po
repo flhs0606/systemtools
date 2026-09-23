@@ -62,6 +62,42 @@ msgctxt "#30011"
 msgid "Free System RAM"
 msgstr "一键释放系统内存"
 
+msgctxt "#30012"
+msgid "Operating System: %s"
+msgstr "操作系统：%s"
+
+msgctxt "#30013"
+msgid "Architecture: %s"
+msgstr "芯片架构：%s"
+
+msgctxt "#30014"
+msgid "Hardware/SoC: %s"
+msgstr "硬件/SoC平台：%s"
+
+msgctxt "#30015"
+msgid "Dual-Boot Support: %s"
+msgstr "双系统切换支持：%s"
+
+msgctxt "#30016"
+msgid "Yes"
+msgstr "支持"
+
+msgctxt "#30017"
+msgid "No"
+msgstr "不支持"
+
+msgctxt "#30018"
+msgid "Python Runtime: %s"
+msgstr "Python 运行时版本：%s"
+
+msgctxt "#30019"
+msgid "Toolbox Features:"
+msgstr "工具箱集成功能："
+
+msgctxt "#30020"
+msgid "Unknown Action: %s"
+msgstr "未知请求动作：%s"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -190,6 +226,34 @@ msgstr "系统备份【%s】已保存至 %s"
 msgctxt "#30135"
 msgid "Continue in simulated/diagnostic mode?"
 msgstr "是否在模拟/诊断模式下继续运行？"
+
+msgctxt "#30136"
+msgid "Writing KERNEL for [%s]..."
+msgstr "正在写入【%s】的 KERNEL 内核引导文件..."
+
+msgctxt "#30137"
+msgid "Writing SYSTEM for [%s]..."
+msgstr "正在写入【%s】的 SYSTEM 系统镜像..."
+
+msgctxt "#30138"
+msgid "Writing checksums..."
+msgstr "正在写入校验文件..."
+
+msgctxt "#30139"
+msgid "Setting configuration markers..."
+msgstr "正在配置自启动切换标记与环境..."
+
+msgctxt "#30140"
+msgid "Failed to extract tar: %s"
+msgstr "解包 tar 文件失败：%s"
+
+msgctxt "#30141"
+msgid "Failed to delete source .tar: %s"
+msgstr "删除原始 .tar 安装包失败：%s"
+
+msgctxt "#30142"
+msgid "Backup failed: %s"
+msgstr "系统备份失败：%s"
 
 # 30200 - 30249: Network Speed Test
 msgctxt "#30201"
@@ -429,6 +493,10 @@ msgctxt "#30318"
 msgid "Browse Custom Directory (USB / SD / External)..."
 msgstr "自定义浏览目录 (U盘 / SD卡 / 外接存储)..."
 
+msgctxt "#30319"
+msgid "Flushing OS cache to measure true physical read speed..."
+msgstr "正在清除系统内存缓存以测试真实物理读取速度..."
+
 # 30400 - 30449: Network Configuration
 msgctxt "#30401"
 msgid "Current Network Status"
@@ -535,6 +603,14 @@ msgctxt "#30508"
 msgid "Current Log Size: %s"
 msgstr "当前日志占用大小：%s"
 
+msgctxt "#30509"
+msgid "Failed to read log: %s"
+msgstr "读取日志文件失败：%s"
+
+msgctxt "#30510"
+msgid "Failed to clear log: %s"
+msgstr "清空日志文件失败：%s"
+
 # 30600 - 30649: Settings
 msgctxt "#30601"
 msgid "Auto Delete TAR After Import"
@@ -633,6 +709,70 @@ msgctxt "#30713"
 msgid "Skip overwriting DTB because protection is enabled."
 msgstr "已启用 DTB 保护，已跳过覆盖设备树文件。"
 
+msgctxt "#30714"
+msgid "Failed to update DTB protection configuration."
+msgstr "更新 DTB 保护配置失败，请检查写入权限。"
+
+msgctxt "#30715"
+msgid "Flash DTB not found at %s"
+msgstr "未在 %s 找到设备树文件。"
+
+msgctxt "#30716"
+msgid "Backup failed: %s"
+msgstr "备份失败：%s"
+
+msgctxt "#30717"
+msgid "Restore custom DTB backup:\n%s\n-> %s?"
+msgstr "确定要将定制 DTB 备份：\n%s\n还原覆盖至：%s 吗？"
+
+msgctxt "#30718"
+msgid "Restore failed: %s"
+msgstr "还原失败：%s"
+
+msgctxt "#30719"
+msgid "Device Tree & Hardware Information"
+msgstr "设备树与硬件配置信息"
+
+msgctxt "#30720"
+msgid "Device Model: %s"
+msgstr "设备硬件型号：%s"
+
+msgctxt "#30721"
+msgid "Auto-Update Protection: %s"
+msgstr "自动更新防覆盖：%s"
+
+msgctxt "#30722"
+msgid "Enabled (Protected)"
+msgstr "已开启 (受保护)"
+
+msgctxt "#30723"
+msgid "Disabled (Overwritable)"
+msgstr "未开启 (升级会覆盖)"
+
+msgctxt "#30724"
+msgid "Config Path: %s"
+msgstr "配置文件路径：%s"
+
+msgctxt "#30725"
+msgid "Flash DTB: %s (%s)"
+msgstr "引导分区设备树：%s (%s)"
+
+msgctxt "#30726"
+msgid "Custom Backup: %s (%s)"
+msgstr "定制备份文件：%s (%s)"
+
+msgctxt "#30727"
+msgid "Exists"
+msgstr "存在"
+
+msgctxt "#30728"
+msgid "Not Found"
+msgstr "未找到"
+
+msgctxt "#30729"
+msgid "None"
+msgstr "无"
+
 # 30800 - 30819: RAM Cleaner
 msgctxt "#30800"
 msgid "Free System RAM"
@@ -653,3 +793,39 @@ msgstr "内存状态：总计 %s，已用 %s，可用 %s"
 msgctxt "#30804"
 msgid "Before: Available %s | After: Available %s"
 msgstr "释放前可用：%s | 释放后可用：%s"
+
+msgctxt "#30805"
+msgid "Total Memory: %s"
+msgstr "内存总量：%s"
+
+msgctxt "#30806"
+msgid "Before: Used %s | Available %s"
+msgstr "清理前：已用 %s | 可用 %s"
+
+msgctxt "#30807"
+msgid "After: Used %s | Available %s"
+msgstr "清理后：已用 %s | 可用 %s"
+
+msgctxt "#30808"
+msgid "Freed Space: %s"
+msgstr "本次共释放：%s"
+
+msgctxt "#30809"
+msgid "Actions Performed:"
+msgstr "已执行的优化动作："
+
+msgctxt "#30810"
+msgid "* Synced dirty filesystem blocks to disk (sync)"
+msgstr "* 强制同步并刷写文件系统脏数据 (sync)"
+
+msgctxt "#30811"
+msgid "* Cleared kernel pagecache, dentries & inodes (drop_caches=3)"
+msgstr "* 清空内核 PageCache、目录项与 inode 缓存 (drop_caches=3)"
+
+msgctxt "#30812"
+msgid "* Purged Kodi internal caches (ClearCache)"
+msgstr "* 清空 Kodi 内部图形纹理与流媒体缓存 (ClearCache)"
+
+msgctxt "#30813"
+msgid "* Performed Python heap garbage collection"
+msgstr "* 执行 Python 运行时垃圾回收整理内存碎片"

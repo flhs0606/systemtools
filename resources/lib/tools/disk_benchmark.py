@@ -16,6 +16,7 @@ from ..common.kodi_ui import (
     translate_path,
 )
 from ..common.logger import debug, error, info
+from ..common.system_exec import run_command
 from .base_tool import BaseTool, ToolRegistry
 
 BENCH_FILENAME = ".kodi_disk_bench.tmp"
@@ -61,6 +62,12 @@ class DiskBenchmarkTool(BaseTool):
                 if dp.is_canceled():
                     return
 
+                # Flush OS pagecache to eliminate cache inflation before sequential read
+                dp.update(28, get_string(30319, "Flushing OS cache to measure true physical read speed..."))
+                self._flush_and_evict_cache(target_filepath)
+                if dp.is_canceled():
+                    return
+
                 # Step 2: Sequential Read
                 dp.update(30, get_string(30304, "Testing Sequential Read..."))
                 seq_read_mbs = self._test_sequential_read(target_filepath, dp)
@@ -70,6 +77,12 @@ class DiskBenchmarkTool(BaseTool):
                 # Step 3: 4K Random Write
                 dp.update(55, get_string(30305, "Testing 4K Random Write..."))
                 rand_write_iops, rand_write_mbs = self._test_4k_random_write(target_filepath, test_size_mb, dp)
+                if dp.is_canceled():
+                    return
+
+                # Flush OS pagecache to eliminate cache inflation before 4K random read
+                dp.update(78, get_string(30319, "Flushing OS cache to measure true physical read speed..."))
+                self._flush_and_evict_cache(target_filepath)
                 if dp.is_canceled():
                     return
 
@@ -166,6 +179,12 @@ class DiskBenchmarkTool(BaseTool):
 
         t0 = time.perf_counter()
         fd = os.open(filepath, os.O_RDONLY | O_BINARY)
+        if hasattr(os, "posix_fadvise") and hasattr(os, "POSIX_FADV_DONTNEED"):
+            try:
+                os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_DONTNEED)
+            except Exception:
+                pass
+
         bytes_read = 0
         try:
             while bytes_read < file_size:
@@ -175,6 +194,7 @@ class DiskBenchmarkTool(BaseTool):
                 if not data:
                     break
                 bytes_read += len(data)
+                del data
                 pct = 30 + int((bytes_read / file_size) * 25)
                 dp.update(pct, f"Seq Read: {bytes_read / (1024 * 1024):.1f}/{size_mb:.1f} MB")
         finally:
@@ -223,6 +243,12 @@ class DiskBenchmarkTool(BaseTool):
             return 0.0, 0.0
 
         fd = os.open(filepath, os.O_RDONLY | O_BINARY)
+        if hasattr(os, "posix_fadvise") and hasattr(os, "POSIX_FADV_DONTNEED"):
+            try:
+                os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_DONTNEED)
+            except Exception:
+                pass
+
         t0 = time.perf_counter()
         performed = 0
         try:
@@ -234,6 +260,7 @@ class DiskBenchmarkTool(BaseTool):
                 data = os.read(fd, block_size)
                 if not data:
                     break
+                del data
                 performed += 1
                 if (i + 1) % 50 == 0:
                     pct = 80 + int(((i + 1) / ops) * 20)
@@ -245,6 +272,35 @@ class DiskBenchmarkTool(BaseTool):
         iops = performed / elapsed
         mbs = (performed * block_size / (1024 * 1024)) / elapsed
         return iops, mbs
+
+    def _flush_and_evict_cache(self, filepath: str) -> None:
+        """Purge OS PageCache and file blocks to ensure raw hardware read speed."""
+        # 1. Sync dirty blocks to physical storage
+        run_command("sync")
+
+        # 2. Tell kernel to drop cached pages of this test file
+        if hasattr(os, "posix_fadvise") and hasattr(os, "POSIX_FADV_DONTNEED") and os.path.exists(filepath):
+            try:
+                fd = os.open(filepath, os.O_RDONLY | O_BINARY)
+                try:
+                    os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_DONTNEED)
+                finally:
+                    os.close(fd)
+            except Exception as e:
+                debug(f"posix_fadvise failed: {e}")
+
+        # 3. Drop system-wide pagecache, dentries and inodes
+        drop_path = "/proc/sys/vm/drop_caches"
+        if os.path.exists(drop_path):
+            try:
+                with open(drop_path, "w") as f:
+                    f.write("3\n")
+                debug("Purged kernel drop_caches=3 for disk benchmark")
+            except Exception:
+                run_command("sysctl -w vm.drop_caches=3")
+                run_command("sh -c 'echo 3 > /proc/sys/vm/drop_caches'")
+
+        time.sleep(0.1)
 
     def _cleanup_temp_file(self, filepath: str) -> None:
         try:

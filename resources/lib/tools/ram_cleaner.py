@@ -138,18 +138,18 @@ class RamCleanerTool(BaseTool):
         report_lines = [
             f"=== {title} ===",
             "",
-            f"Total Memory:     {format_bytes(mem_after['total'])}",
+            get_string(30805, "Total Memory: %s") % format_bytes(mem_after["total"]),
             "--------------------------------------------------",
-            f"Before Cleaning:  Used {format_bytes(mem_before['used'])} | Available {format_bytes(mem_before['available'])}",
-            f"After Cleaning:   Used {format_bytes(mem_after['used'])} | Available {format_bytes(mem_after['available'])}",
+            get_string(30806, "Before: Used %s | Available %s") % (format_bytes(mem_before["used"]), format_bytes(mem_before["available"])),
+            get_string(30807, "After: Used %s | Available %s") % (format_bytes(mem_after["used"]), format_bytes(mem_after["available"])),
             "--------------------------------------------------",
-            f"Freed Space:      {freed_fmt}",
+            get_string(30808, "Freed Space: %s") % freed_fmt,
             "",
-            "Actions Performed:",
-            "  * Synced dirty filesystem blocks to disk (sync)",
-            "  * Cleared kernel pagecache, dentries & inodes (drop_caches=3)",
-            "  * Purged Kodi internal caches (ClearCache)",
-            "  * Performed Python heap garbage collection",
+            get_string(30809, "Actions Performed:"),
+            f"  {get_string(30810, '* Synced dirty filesystem blocks to disk (sync)')}",
+            f"  {get_string(30811, '* Cleared kernel pagecache, dentries & inodes (drop_caches=3)')}",
+            f"  {get_string(30812, '* Purged Kodi internal caches (ClearCache)')}",
+            f"  {get_string(30813, '* Performed Python heap garbage collection')}",
         ]
         dialog_textviewer(title, "\n".join(report_lines))
 

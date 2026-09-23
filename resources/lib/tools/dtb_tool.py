@@ -128,11 +128,11 @@ class DtbTool(BaseTool):
             )
             show_notification(title, msg)
         else:
-            dialog_ok(title, "Failed to update DTB protection configuration.")
+            dialog_ok(title, get_string(30714, "Failed to update DTB protection configuration."))
 
     def _action_backup_dtb(self, title: str) -> None:
         if not os.path.isfile(self.flash_dtb_path):
-            dialog_ok(title, f"Flash DTB not found at {self.flash_dtb_path}")
+            dialog_ok(title, get_string(30715, "Flash DTB not found at %s") % self.flash_dtb_path)
             return
 
         os.makedirs(self.config_dir, exist_ok=True)
@@ -144,14 +144,14 @@ class DtbTool(BaseTool):
             dialog_ok(title, msg)
         except Exception as e:
             error(f"Failed to backup DTB: {e}")
-            dialog_ok(title, f"Backup failed: {e}")
+            dialog_ok(title, get_string(30716, "Backup failed: %s") % str(e))
 
     def _action_restore_dtb(self, title: str) -> None:
         if not os.path.isfile(self.backup_path):
             dialog_ok(title, get_string(30712, "No DTB backup file found."))
             return
 
-        confirm_msg = f"Restore custom DTB backup:\n{self.backup_path}\n-> {self.flash_dtb_path}?"
+        confirm_msg = get_string(30717, "Restore custom DTB backup:\n%s\n-> %s?") % (self.backup_path, self.flash_dtb_path)
         if not dialog_yesno(title, confirm_msg):
             return
 
@@ -163,21 +163,24 @@ class DtbTool(BaseTool):
             show_notification(title, get_string(30711, "Custom DTB restored to /flash."))
         except Exception as e:
             error(f"Failed to restore DTB: {e}")
-            dialog_ok(title, f"Restore failed: {e}")
+            dialog_ok(title, get_string(30718, "Restore failed: %s") % str(e))
         finally:
             run_command(f"mount -o remount,ro {self.flash_dir}")
 
     def _action_view_info(self, title: str) -> None:
         model = self._get_device_model()
         protected = is_dtb_protected(self.config_dir)
+        prot_status = get_string(30722, "Enabled (Protected)") if protected else get_string(30723, "Disabled (Overwritable)")
+        flash_status = get_string(30727, "Exists") if os.path.exists(self.flash_dtb_path) else get_string(30728, "Not Found")
+        backup_status = get_string(30727, "Exists") if os.path.exists(self.backup_path) else get_string(30729, "None")
         info_lines = [
-            f"=== {title} ===",
+            f"=== {get_string(30719, 'Device Tree & Hardware Information')} ===",
             "",
-            f"Device Model: {model}",
-            f"Auto-Update Protection: {'Enabled (Protected)' if protected else 'Disabled (Overwritable)'}",
-            f"Config Path: {self.conf_path}",
-            f"Flash DTB: {self.flash_dtb_path} ({'Exists' if os.path.exists(self.flash_dtb_path) else 'Not found'})",
-            f"Custom Backup: {self.backup_path} ({'Exists' if os.path.exists(self.backup_path) else 'None'})",
+            get_string(30720, "Device Model: %s") % model,
+            get_string(30721, "Auto-Update Protection: %s") % prot_status,
+            get_string(30724, "Config Path: %s") % self.conf_path,
+            get_string(30725, "Flash DTB: %s (%s)") % (self.flash_dtb_path, flash_status),
+            get_string(30726, "Custom Backup: %s (%s)") % (self.backup_path, backup_status),
         ]
         dialog_textviewer(title, "\n".join(info_lines))
 

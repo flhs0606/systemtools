@@ -405,7 +405,7 @@ fi
                     show_notification(title, get_string(30129, "Source .tar package deleted (%s MB freed).") % f"{tar_size_mb:.1f}")
                 except Exception as e:
                     error(f"Failed to delete source tar {tar_path}: {e}")
-                    dialog_ok(title, f"Failed to delete source .tar: {e}")
+                    dialog_ok(title, get_string(30141, "Failed to delete source .tar: %s") % str(e))
 
             # Ask whether to switch to the imported version immediately
             switch_prompt = get_string(30130, "Do you want to switch to version [%s] and reboot now?") % ver_name
@@ -415,7 +415,7 @@ fi
         except Exception as e:
             error(f"Import tar failed: {e}")
             shutil.rmtree(dest_vdir, ignore_errors=True)
-            dialog_ok(title, f"Failed to extract tar: {e}")
+            dialog_ok(title, get_string(30140, "Failed to extract tar: %s") % str(e))
 
     # ------------------ Action 3: Backup Current System ------------------
     def _action_backup_current(self, title: str) -> None:
@@ -430,10 +430,10 @@ fi
 
         try:
             with progress_dialog(title, get_string(30133, "Backing up current running system...")) as dp:
-                dp.update(20, "Backing up KERNEL...")
+                dp.update(20, get_string(30136, "Writing KERNEL for [%s]...") % name)
                 self._copy_system_file(self.flash_dir, dest_vdir, "KERNEL.img", fallback="KERNEL")
 
-                dp.update(50, "Backing up SYSTEM...")
+                dp.update(50, get_string(30137, "Writing SYSTEM for [%s]...") % name)
                 self._copy_system_file(self.flash_dir, dest_vdir, "SYSTEM")
 
                 dp.update(80, "Backing up guisettings.xml...")
@@ -453,7 +453,7 @@ fi
                 with open(os.path.join(dest_vdir, "version.json"), "w", encoding="utf-8") as f:
                     json.dump(info_data, f, indent=2)
 
-                dp.update(100, "Backup completed successfully!")
+                dp.update(100, get_string(30120, "Version switched successfully! Rebooting now..."))
                 time.sleep(1)
 
             dialog_ok(title, get_string(30134, "System backup [%s] saved to %s") % (name, dest_vdir))
@@ -461,7 +461,7 @@ fi
         except Exception as e:
             error(f"Backup failed: {e}")
             shutil.rmtree(dest_vdir, ignore_errors=True)
-            dialog_ok(title, f"Backup failed: {e}")
+            dialog_ok(title, get_string(30142, "Backup failed: %s") % str(e))
 
     # ------------------ Action 4: Delete Version ------------------
     def _action_delete_version(self, title: str) -> None:
@@ -493,12 +493,13 @@ fi
         try:
             with progress_dialog(title, get_string(30119, "Writing system files to /flash...")) as dp:
                 self._backup_current_guisettings()
-                dp.update(30, f"Writing KERNEL for [{target_ver}]...")
+                dp.update(30, get_string(30136, "Writing KERNEL for [%s]...") % target_ver)
                 self._copy_system_file(src_vdir, self.flash_dir, "KERNEL.img", fallback="KERNEL")
 
-                dp.update(60, f"Writing SYSTEM for [{target_ver}]...")
+                dp.update(60, get_string(30137, "Writing SYSTEM for [%s]...") % target_ver)
                 self._copy_system_file(src_vdir, self.flash_dir, "SYSTEM")
 
+                dp.update(80, get_string(30138, "Writing checksums..."))
                 for md5_file in ["KERNEL.img.md5", "KERNEL.md5", "SYSTEM.md5"]:
                     self._copy_optional_file(src_vdir, self.flash_dir, md5_file)
 
@@ -508,6 +509,7 @@ fi
                 else:
                     info("DTB protection is active (ENABLE=no), skipped overwriting dtb.img in /flash")
 
+                dp.update(90, get_string(30139, "Setting configuration markers..."))
                 os.makedirs(self.config_dir, exist_ok=True)
                 with open(self.switch_target_file, "w", encoding="utf-8") as f:
                     f.write(target_ver)

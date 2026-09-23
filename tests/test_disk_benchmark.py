@@ -35,3 +35,13 @@ def test_sequential_write_and_read(tmp_path):
     # Test cleanup
     tool._cleanup_temp_file(bench_file)
     assert not os.path.exists(bench_file)
+
+
+def test_flush_and_evict_cache(tmp_path):
+    tool = DiskBenchmarkTool()
+    dummy_file = os.path.join(str(tmp_path), "cache_test.tmp")
+    with open(dummy_file, "wb") as f:
+        f.write(b"DATA" * 1024)
+    tool._flush_and_evict_cache(dummy_file)
+    assert os.path.exists(dummy_file)
+    os.remove(dummy_file)

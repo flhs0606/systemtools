@@ -62,6 +62,42 @@ msgctxt "#30011"
 msgid "Free System RAM"
 msgstr "Free System RAM"
 
+msgctxt "#30012"
+msgid "Operating System: %s"
+msgstr "Operating System: %s"
+
+msgctxt "#30013"
+msgid "Architecture: %s"
+msgstr "Architecture: %s"
+
+msgctxt "#30014"
+msgid "Hardware/SoC: %s"
+msgstr "Hardware/SoC: %s"
+
+msgctxt "#30015"
+msgid "Dual-Boot Support: %s"
+msgstr "Dual-Boot Support: %s"
+
+msgctxt "#30016"
+msgid "Yes"
+msgstr "Yes"
+
+msgctxt "#30017"
+msgid "No"
+msgstr "No"
+
+msgctxt "#30018"
+msgid "Python Runtime: %s"
+msgstr "Python Runtime: %s"
+
+msgctxt "#30019"
+msgid "Toolbox Features:"
+msgstr "Toolbox Features:"
+
+msgctxt "#30020"
+msgid "Unknown Action: %s"
+msgstr "Unknown Action: %s"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -190,6 +226,34 @@ msgstr "System backup [%s] saved to %s"
 msgctxt "#30135"
 msgid "Continue in simulated/diagnostic mode?"
 msgstr "Continue in simulated/diagnostic mode?"
+
+msgctxt "#30136"
+msgid "Writing KERNEL for [%s]..."
+msgstr "Writing KERNEL for [%s]..."
+
+msgctxt "#30137"
+msgid "Writing SYSTEM for [%s]..."
+msgstr "Writing SYSTEM for [%s]..."
+
+msgctxt "#30138"
+msgid "Writing checksums..."
+msgstr "Writing checksums..."
+
+msgctxt "#30139"
+msgid "Setting configuration markers..."
+msgstr "Setting configuration markers..."
+
+msgctxt "#30140"
+msgid "Failed to extract tar: %s"
+msgstr "Failed to extract tar: %s"
+
+msgctxt "#30141"
+msgid "Failed to delete source .tar: %s"
+msgstr "Failed to delete source .tar: %s"
+
+msgctxt "#30142"
+msgid "Backup failed: %s"
+msgstr "Backup failed: %s"
 
 # 30200 - 30249: Network Speed Test
 msgctxt "#30201"
@@ -429,6 +493,10 @@ msgctxt "#30318"
 msgid "Browse Custom Directory (USB / SD / External)..."
 msgstr "Browse Custom Directory (USB / SD / External)..."
 
+msgctxt "#30319"
+msgid "Flushing OS cache to measure true physical read speed..."
+msgstr "Flushing OS cache to measure true physical read speed..."
+
 # 30400 - 30449: Network Configuration
 msgctxt "#30401"
 msgid "Current Network Status"
@@ -535,6 +603,14 @@ msgctxt "#30508"
 msgid "Current Log Size: %s"
 msgstr "Current Log Size: %s"
 
+msgctxt "#30509"
+msgid "Failed to read log: %s"
+msgstr "Failed to read log: %s"
+
+msgctxt "#30510"
+msgid "Failed to clear log: %s"
+msgstr "Failed to clear log: %s"
+
 # 30600 - 30649: Settings
 msgctxt "#30601"
 msgid "Auto Delete TAR After Import"
@@ -633,6 +709,70 @@ msgctxt "#30713"
 msgid "Skip overwriting DTB because protection is enabled."
 msgstr "Skip overwriting DTB because protection is enabled."
 
+msgctxt "#30714"
+msgid "Failed to update DTB protection configuration."
+msgstr "Failed to update DTB protection configuration."
+
+msgctxt "#30715"
+msgid "Flash DTB not found at %s"
+msgstr "Flash DTB not found at %s"
+
+msgctxt "#30716"
+msgid "Backup failed: %s"
+msgstr "Backup failed: %s"
+
+msgctxt "#30717"
+msgid "Restore custom DTB backup:\n%s\n-> %s?"
+msgstr "Restore custom DTB backup:\n%s\n-> %s?"
+
+msgctxt "#30718"
+msgid "Restore failed: %s"
+msgstr "Restore failed: %s"
+
+msgctxt "#30719"
+msgid "Device Tree & Hardware Information"
+msgstr "Device Tree & Hardware Information"
+
+msgctxt "#30720"
+msgid "Device Model: %s"
+msgstr "Device Model: %s"
+
+msgctxt "#30721"
+msgid "Auto-Update Protection: %s"
+msgstr "Auto-Update Protection: %s"
+
+msgctxt "#30722"
+msgid "Enabled (Protected)"
+msgstr "Enabled (Protected)"
+
+msgctxt "#30723"
+msgid "Disabled (Overwritable)"
+msgstr "Disabled (Overwritable)"
+
+msgctxt "#30724"
+msgid "Config Path: %s"
+msgstr "Config Path: %s"
+
+msgctxt "#30725"
+msgid "Flash DTB: %s (%s)"
+msgstr "Flash DTB: %s (%s)"
+
+msgctxt "#30726"
+msgid "Custom Backup: %s (%s)"
+msgstr "Custom Backup: %s (%s)"
+
+msgctxt "#30727"
+msgid "Exists"
+msgstr "Exists"
+
+msgctxt "#30728"
+msgid "Not Found"
+msgstr "Not Found"
+
+msgctxt "#30729"
+msgid "None"
+msgstr "None"
+
 # 30800 - 30819: RAM Cleaner
 msgctxt "#30800"
 msgid "Free System RAM"
@@ -653,3 +793,39 @@ msgstr "Memory Details: Total %s, Used %s, Available %s"
 msgctxt "#30804"
 msgid "Before: Available %s | After: Available %s"
 msgstr "Before: Available %s | After: Available %s"
+
+msgctxt "#30805"
+msgid "Total Memory: %s"
+msgstr "Total Memory: %s"
+
+msgctxt "#30806"
+msgid "Before: Used %s | Available %s"
+msgstr "Before: Used %s | Available %s"
+
+msgctxt "#30807"
+msgid "After: Used %s | Available %s"
+msgstr "After: Used %s | Available %s"
+
+msgctxt "#30808"
+msgid "Freed Space: %s"
+msgstr "Freed Space: %s"
+
+msgctxt "#30809"
+msgid "Actions Performed:"
+msgstr "Actions Performed:"
+
+msgctxt "#30810"
+msgid "* Synced dirty filesystem blocks to disk (sync)"
+msgstr "* Synced dirty filesystem blocks to disk (sync)"
+
+msgctxt "#30811"
+msgid "* Cleared kernel pagecache, dentries & inodes (drop_caches=3)"
+msgstr "* Cleared kernel pagecache, dentries & inodes (drop_caches=3)"
+
+msgctxt "#30812"
+msgid "* Purged Kodi internal caches (ClearCache)"
+msgstr "* Purged Kodi internal caches (ClearCache)"
+
+msgctxt "#30813"
+msgid "* Performed Python heap garbage collection"
+msgstr "* Performed Python heap garbage collection"
