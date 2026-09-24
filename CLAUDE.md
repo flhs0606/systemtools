@@ -98,6 +98,11 @@ To add a new tool:
     - Flushes dirty blocks with `sync`, drops pagecache/dentries/inodes via `/proc/sys/vm/drop_caches` (`echo 3 > ...`).
     - Purges Kodi internal texture/stream caches with `ClearCache` and runs Python `gc.collect()`.
     - Reads `/proc/meminfo` to display memory stats and amount of RAM freed.
+- [resources/lib/tools/kodi_optimizer.py](resources/lib/tools/kodi_optimizer.py):
+  - **Kodi Database & Mali GPU Rendering Optimizer**:
+    - Configures SQLite databases with `PRAGMA journal_mode = WAL` and `PRAGMA synchronous = NORMAL` for non-blocking concurrent reads/writes on large media libraries.
+    - Tunes `advancedsettings.xml` (`asynctextureupload=false`, `minifiedmipmapping=false`, `algorithmdirtyregions=2`, `imageres=540`, `fanartres=720`, `cache_size=-32768`) to eliminate EGL driver stalls and GPU dropped frames.
+    - Creates `.bak` backups before modifying files and provides one-click restoration.
 - [resources/lib/tools/net_speedtest.py](resources/lib/tools/net_speedtest.py):
   - **LAN & Cloud Drive Video Stream Benchmark**: Reads files over `smb://`, `nfs://`, `webdav://`, `dav://`, `http://`, `https://`, `ftp://`, and local mounts using `xbmcvfs.File`. 1MB chunked reading with zero memory retention. Features a 2-second stabilization period, tracking real-time MB/s, Mbps, max/min speeds, and network stability rate `(min_speed / max_speed) * 100%`, with 4K Blu-ray streaming ratings. Runs `gc.collect()` and `ClearCache` on exit.
   - **Internet WAN Speed Test**: Measures public TCP DNS ping latency, CDN download, and upload throughput.

@@ -98,6 +98,10 @@ msgctxt "#30020"
 msgid "Unknown Action: %s"
 msgstr "未知请求动作：%s"
 
+msgctxt "#30021"
+msgid "Kodi Performance Optimizer"
+msgstr "Kodi 性能与渲染优化"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -829,3 +833,88 @@ msgstr "* 清空 Kodi 内部图形纹理与流媒体缓存 (ClearCache)"
 msgctxt "#30813"
 msgid "* Performed Python heap garbage collection"
 msgstr "* 执行 Python 运行时垃圾回收整理内存碎片"
+
+# 30900 - 30930: Kodi Performance Optimizer
+msgctxt "#30900"
+msgid "Kodi Performance Optimizer"
+msgstr "Kodi 性能与渲染优化"
+
+msgctxt "#30901"
+msgid "Optimize database WAL mode and Mali GPU rendering pipeline"
+msgstr "媒体数据库 WAL 加速与 Mali GPU 渲染调优"
+
+msgctxt "#30902"
+msgid "Apply All Performance Optimizations"
+msgstr "一键应用深度性能优化"
+
+msgctxt "#30903"
+msgid "View Current Optimization Status"
+msgstr "查看当前性能优化状态"
+
+msgctxt "#30904"
+msgid "Restore Configurations from Backup (.bak)"
+msgstr "还原原始备份配置 (.bak)"
+
+msgctxt "#30905"
+msgid "Optimizing SQLite databases..."
+msgstr "正在优化 SQLite 媒体数据库 (WAL 并发模式)..."
+
+msgctxt "#30906"
+msgid "Optimizing advancedsettings.xml..."
+msgstr "正在调优高级渲染设置与内存缓存..."
+
+msgctxt "#30907"
+msgid "Optimizations applied successfully! Restart Kodi/system to take effect. Reboot now?"
+msgstr "优化已成功应用！需要重启 Kodi 以生效高级设置。是否立即重启？"
+
+msgctxt "#30908"
+msgid "No database files found in %s"
+msgstr "在 %s 中未找到数据库文件"
+
+msgctxt "#30909"
+msgid "No backup (.bak) files found to restore."
+msgstr "未找到任何可还原的备份 (.bak) 文件"
+
+msgctxt "#30910"
+msgid "Backups restored successfully! Restart Kodi to apply. Reboot now?"
+msgstr "备份已成功还原！需要重启 Kodi 生效。是否立即重启？"
+
+msgctxt "#30911"
+msgid "Optimization Status Report"
+msgstr "性能优化状态报告"
+
+msgctxt "#30912"
+msgid "Optimal (WAL)"
+msgstr "已优化 (WAL 极速并发)"
+
+msgctxt "#30913"
+msgid "Default (Lock-Prone)"
+msgstr "默认 (易并发锁库)"
+
+msgctxt "#30914"
+msgid "Databases (%d detected):"
+msgstr "SQLite 媒体数据库 (%d 个)："
+
+msgctxt "#30915"
+msgid "Rendering & Cache Settings (%s):"
+msgstr "渲染与缓存高级配置 (%s)："
+
+msgctxt "#30916"
+msgid "File does not exist (using Kodi hardcoded defaults)."
+msgstr "文件不存在（当前使用 Kodi 内置默认参数）"
+
+msgctxt "#30917"
+msgid "Not set"
+msgstr "未设置"
+
+msgctxt "#30918"
+msgid "Optimal"
+msgstr "推荐值"
+
+msgctxt "#30919"
+msgid "Are you sure you want to restore all databases and settings from .bak backups?"
+msgstr "确定要从 .bak 备份中还原所有数据库与高级设置吗？"
+
+msgctxt "#30920"
+msgid "Restored %d files successfully."
+msgstr "已成功还原 %d 个文件。"

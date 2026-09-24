@@ -22,7 +22,17 @@
 - **Kodi 内部渲染与纹理缓存清理**：调用 Kodi 原生 `ClearCache` 清除积压的海报海量纹理与媒体流缓存，并触发 Python 堆垃圾回收 (`gc.collect`)。
 - **清理前后详细对比看板**：直观展示清理前后内存总计、已用、可用容量与释放的体积（MB/GB），极大缓解 2GB/4GB 内存电视盒子长时间运行后的卡顿与闪退。
 
-### 4. 全协议视频流测速与网络测速 (Network Speed Test)
+### 4. Kodi 性能与渲染优化 (Kodi Performance Optimizer)
+- **SQLite 媒体数据库 WAL 并发加速**：遍历 `/storage/.kodi/userdata/Database/` 下的所有媒体数据库，自动开启 `PRAGMA journal_mode = WAL` 与 `PRAGMA synchronous = NORMAL`，使读写操作并行不锁库，彻底消灭上万部影视库浏览时的卡死与等待。
+- **Mali GPU 渲染管线与防掉帧调优**：
+  - 自动禁用异步纹理上传 (`<asynctextureupload>false</asynctextureupload>`)，杜绝多线程 EGL 上下文竞争引发的 `glFinish()` 阻塞与 GPU 驱动死锁卡死。
+  - 禁用运行时动态多级贴图生成 (`<minifiedmipmapping>false</minifiedmipmapping>`)，杜绝主渲染线程执行昂贵的 `glGenerateMipmap()` 造成海报列表滚动丢帧。
+  - 开启代价减少脏区域局部重绘 (`<algorithmdirtyregions>2</algorithmdirtyregions>`)，避免全视口重绘。
+  - 缩略图分辨率智能限制（海报限制 540p、背景图限制 720p），释放高达 50% 显存与内存占用。
+  - 为 SQLite 视频数据库分配 32MB 内存页缓存 (`<cache_size>-32768</cache_size>`)，海量媒体索引瞬间常驻 RAM。
+- **安全备份与一键还原**：修改前自动为数据库和 `advancedsettings.xml` 生成 `.bak` 备份，支持一键无损还原。
+
+### 5. 全协议视频流测速与网络测速 (Network Speed Test)
 - **局域网 / 网盘全协议测速**：
   - 基于 Kodi 原生 `xbmcvfs`，全面覆盖 `smb://`、`nfs://`、`webdav://`、`dav://`、`http://`、`https://`、`ftp://` 及本地挂载路径。
   - 选择任意大文件视频（建议 ≥1GB），采用 1MB 分块读取，**随读随弃，零内存缓存**。
@@ -32,19 +42,19 @@
 - **互联网外网宽带测速**：
   - 测试 TCP 延迟 (Ping)、公网 CDN 多线程下载带宽与上传带宽。
 
-### 5. 存储读写测速 (Disk Benchmark)
+### 6. 存储读写测速 (Disk Benchmark)
 - 支持测试机顶盒内置存储 (eMMC)、SD 卡、U盘、外置移动硬盘或 NAS 挂载路径。
 - **顺序写入与读取** (MB/s)。
 - **4K 随机写入与读取** (MB/s 及 IOPS 吞吐量)。
-- 强制同步 (`fsync` / `O_SYNC` / `O_BINARY`) 避免系统缓存误报真实磁盘性能。
+- 强制同步 (`fsync` / `O_SYNC` / `O_BINARY`) 并通过内核 `drop_caches` 与 `posix_fadvise` 彻底消除内存缓存干扰，测得真实物理闪存性能。
 - 退出与异常时通过 `finally` 安全自动清理临时测试文件。
 
-### 6. 系统网络配置 (Network Configuration)
+### 7. 系统网络配置 (Network Configuration)
 - 查看网卡接口（eth0、wlan0）、当前 IP、子网掩码、网关、DNS。
 - 支持一键切换 DHCP 自动获取或配置静态 IP / 网关 / DNS。
 - 针对 CoreELEC / LibreELEC 的 ConnMan 服务及通用 Linux `ip` 指令无缝集成。
 
-### 7. Kodi 日志管理与一键清理 (Kodi Log Cleaner)
+### 8. Kodi 日志管理与一键清理 (Kodi Log Cleaner)
 - 自动定位 Kodi 日志目录 (`special://logpath/`)。
 - 一键查看最近运行日志 (Tail Viewer)。
 - 一键清空 `kodi.log`，清理 `kodi.old.log` 及崩溃日志 (`kodi_crashlog*`)。
@@ -58,13 +68,13 @@
 ```bash
 python scripts/package.py
 ```
-生成安装包位于 `dist/plugin.program.systemtools-1.0.0.zip`。
+生成安装包位于 `dist/plugin.program.systemtools-1.0.1.zip`。
 
 ### 在 Kodi 中安装
 1. 打开 Kodi -> **设置 (Settings)** -> **插件 (Add-ons)**。
 2. 开启 **未知来源 (Unknown sources)**。
 3. 选择 **从 Zip 文件安装 (Install from zip file)**。
-4. 浏览并选择 `dist/plugin.program.systemtools-1.0.0.zip` 即可完成安装。
+4. 浏览并选择 `dist/plugin.program.systemtools-1.0.1.zip` 即可完成安装。
 
 ---
 

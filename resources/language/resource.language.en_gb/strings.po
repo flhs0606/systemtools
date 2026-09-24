@@ -98,6 +98,10 @@ msgctxt "#30020"
 msgid "Unknown Action: %s"
 msgstr "Unknown Action: %s"
 
+msgctxt "#30021"
+msgid "Kodi Performance Optimizer"
+msgstr "Kodi Performance Optimizer"
+
 # 30100 - 30149: CoreELEC Multi-version & Power
 msgctxt "#30101"
 msgid "Reboot to Android"
@@ -829,3 +833,88 @@ msgstr "* Purged Kodi internal caches (ClearCache)"
 msgctxt "#30813"
 msgid "* Performed Python heap garbage collection"
 msgstr "* Performed Python heap garbage collection"
+
+# 30900 - 30930: Kodi Performance Optimizer
+msgctxt "#30900"
+msgid "Kodi Performance Optimizer"
+msgstr "Kodi Performance Optimizer"
+
+msgctxt "#30901"
+msgid "Optimize database WAL mode and Mali GPU rendering pipeline"
+msgstr "Optimize database WAL mode and Mali GPU rendering pipeline"
+
+msgctxt "#30902"
+msgid "Apply All Performance Optimizations"
+msgstr "Apply All Performance Optimizations"
+
+msgctxt "#30903"
+msgid "View Current Optimization Status"
+msgstr "View Current Optimization Status"
+
+msgctxt "#30904"
+msgid "Restore Configurations from Backup (.bak)"
+msgstr "Restore Configurations from Backup (.bak)"
+
+msgctxt "#30905"
+msgid "Optimizing SQLite databases..."
+msgstr "Optimizing SQLite databases (WAL concurrent mode)..."
+
+msgctxt "#30906"
+msgid "Optimizing advancedsettings.xml..."
+msgstr "Optimizing advanced rendering & cache settings..."
+
+msgctxt "#30907"
+msgid "Optimizations applied successfully! Restart Kodi/system to take effect. Reboot now?"
+msgstr "Optimizations applied successfully! Restart Kodi/system to take effect. Reboot now?"
+
+msgctxt "#30908"
+msgid "No database files found in %s"
+msgstr "No database files found in %s"
+
+msgctxt "#30909"
+msgid "No backup (.bak) files found to restore."
+msgstr "No backup (.bak) files found to restore."
+
+msgctxt "#30910"
+msgid "Backups restored successfully! Restart Kodi to apply. Reboot now?"
+msgstr "Backups restored successfully! Restart Kodi to apply. Reboot now?"
+
+msgctxt "#30911"
+msgid "Optimization Status Report"
+msgstr "Optimization Status Report"
+
+msgctxt "#30912"
+msgid "Optimal (WAL)"
+msgstr "Optimal (WAL Mode)"
+
+msgctxt "#30913"
+msgid "Default (Lock-Prone)"
+msgstr "Default (Lock-Prone)"
+
+msgctxt "#30914"
+msgid "Databases (%d detected):"
+msgstr "Databases (%d detected):"
+
+msgctxt "#30915"
+msgid "Rendering & Cache Settings (%s):"
+msgstr "Rendering & Cache Settings (%s):"
+
+msgctxt "#30916"
+msgid "File does not exist (using Kodi hardcoded defaults)."
+msgstr "File does not exist (using Kodi hardcoded defaults)."
+
+msgctxt "#30917"
+msgid "Not set"
+msgstr "Not set"
+
+msgctxt "#30918"
+msgid "Optimal"
+msgstr "Optimal"
+
+msgctxt "#30919"
+msgid "Are you sure you want to restore all databases and settings from .bak backups?"
+msgstr "Are you sure you want to restore all databases and settings from .bak backups?"
+
+msgctxt "#30920"
+msgid "Restored %d files successfully."
+msgstr "Restored %d files successfully."
