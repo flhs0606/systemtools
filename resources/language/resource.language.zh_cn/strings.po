@@ -934,3 +934,11 @@ msgstr "极速省显存模式 (适合低配或超大海报库，海报540p/背�
 msgctxt "#30924"
 msgid "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"
 msgstr "4K 原生超清 (适合 4GB 高配设备与 4K 皮肤，海报1080p/背景2160p)"
+
+msgctxt "#30925"
+msgid "Optimizing %s (WAL concurrent mode)..."
+msgstr "正在优化 %s (开启 WAL 并发模式)..."
+
+msgctxt "#30926"
+msgid "Performance optimization completed!"
+msgstr "性能与渲染优化全部完成！"

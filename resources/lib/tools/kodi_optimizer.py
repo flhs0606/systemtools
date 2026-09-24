@@ -153,7 +153,7 @@ class KodiOptimizerTool(BaseTool):
                 dp.update(70, get_string(30906, "Optimizing advancedsettings.xml..."))
                 self.optimize_advancedsettings(imageres=imageres, fanartres=fanartres)
 
-                dp.update(100, get_string(30204, "Completed"))
+                dp.update(100, get_string(30926, "Performance optimization completed!"))
                 time.sleep(0.5)
 
             msg = get_string(
@@ -213,7 +213,7 @@ class KodiOptimizerTool(BaseTool):
 
             if dp:
                 pct = int(10 + (i / max(1, total)) * 55)
-                dp.update(pct, f"Optimizing {db_name} (WAL mode)...")
+                dp.update(pct, get_string(30925, "Optimizing %s (WAL concurrent mode)...") % db_name)
 
             try:
                 conn = sqlite3.connect(db_path, timeout=10.0, isolation_level=None)

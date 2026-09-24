@@ -934,3 +934,11 @@ msgstr "Low VRAM Saver (Fast, for low RAM or huge libraries, 540p/720p)"
 msgctxt "#30924"
 msgid "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"
 msgstr "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"
+
+msgctxt "#30925"
+msgid "Optimizing %s (WAL concurrent mode)..."
+msgstr "Optimizing %s (WAL concurrent mode)..."
+
+msgctxt "#30926"
+msgid "Performance optimization completed!"
+msgstr "Performance optimization completed!"
