@@ -918,3 +918,19 @@ msgstr "Are you sure you want to restore all databases and settings from .bak ba
 msgctxt "#30920"
 msgid "Restored %d files successfully."
 msgstr "Restored %d files successfully."
+
+msgctxt "#30921"
+msgid "Select Thumbnail Quality Preset"
+msgstr "Select Thumbnail Quality Preset"
+
+msgctxt "#30922"
+msgid "1080p Full HD (Recommended, 1:1 pixel crisp, 720p/1080p)"
+msgstr "1080p Full HD (Recommended, 1:1 pixel crisp, 720p/1080p)"
+
+msgctxt "#30923"
+msgid "Low VRAM Saver (Fast, for low RAM or huge libraries, 540p/720p)"
+msgstr "Low VRAM Saver (Fast, for low RAM or huge libraries, 540p/720p)"
+
+msgctxt "#30924"
+msgid "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"
+msgstr "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"

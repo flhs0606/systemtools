@@ -68,13 +68,13 @@
 ```bash
 python scripts/package.py
 ```
-生成安装包位于 `dist/plugin.program.systemtools-1.0.1.zip`。
+生成安装包位于 `dist/plugin.program.systemtools-1.0.2.zip`。
 
 ### 在 Kodi 中安装
 1. 打开 Kodi -> **设置 (Settings)** -> **插件 (Add-ons)**。
 2. 开启 **未知来源 (Unknown sources)**。
 3. 选择 **从 Zip 文件安装 (Install from zip file)**。
-4. 浏览并选择 `dist/plugin.program.systemtools-1.0.1.zip` 即可完成安装。
+4. 浏览并选择 `dist/plugin.program.systemtools-1.0.2.zip` 即可完成安装。
 
 ---
 

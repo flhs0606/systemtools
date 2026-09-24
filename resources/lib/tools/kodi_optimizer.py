@@ -121,6 +121,24 @@ class KodiOptimizerTool(BaseTool):
             self._action_restore_backups(title)
 
     def _action_apply_optimizations(self, title: str) -> None:
+        # Prompt user for thumbnail resolution preset
+        preset_title = get_string(30921, "Select Thumbnail Quality Preset")
+        presets = [
+            get_string(30922, "1080p Full HD (Recommended, 1:1 pixel crisp, 720p/1080p)"),
+            get_string(30923, "Low VRAM Saver (Fast, for low RAM or huge libraries, 540p/720p)"),
+            get_string(30924, "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"),
+        ]
+        p_idx = dialog_select(preset_title, presets)
+        if p_idx < 0:
+            return
+
+        if p_idx == 0:
+            imageres, fanartres = 720, 1080
+        elif p_idx == 1:
+            imageres, fanartres = 540, 720
+        else:
+            imageres, fanartres = 1080, 2160
+
         os.makedirs(self.userdata_path, exist_ok=True)
         db_dir = os.path.join(self.userdata_path, "Database")
         os.makedirs(db_dir, exist_ok=True)
@@ -131,9 +149,9 @@ class KodiOptimizerTool(BaseTool):
                 dp.update(10, get_string(30905, "Optimizing SQLite databases..."))
                 db_count = self.optimize_databases(dp)
 
-                # 2. Optimize advancedsettings.xml
+                # 2. Optimize advancedsettings.xml with chosen quality preset
                 dp.update(70, get_string(30906, "Optimizing advancedsettings.xml..."))
-                self.optimize_advancedsettings()
+                self.optimize_advancedsettings(imageres=imageres, fanartres=fanartres)
 
                 dp.update(100, get_string(30204, "Completed"))
                 time.sleep(0.5)
@@ -210,7 +228,7 @@ class KodiOptimizerTool(BaseTool):
 
         return total
 
-    def optimize_advancedsettings(self) -> None:
+    def optimize_advancedsettings(self, imageres: int = 720, fanartres: int = 1080) -> None:
         """Safely merge Mali GPU and SQLite cache optimizations into advancedsettings.xml."""
         as_path = os.path.join(self.userdata_path, "advancedsettings.xml")
         backup_file(as_path)
@@ -240,9 +258,9 @@ class KodiOptimizerTool(BaseTool):
         update_xml_element(gui_elem, "algorithmdirtyregions", "2")
         update_xml_element(gui_elem, "bufferagepartialredraw", "1")
         update_xml_element(gui_elem, "maxdirtyregions", "4")
-        # Cap thumbnail cache sizes to save memory and avoid GPU texture memory bloat
-        update_xml_element(gui_elem, "imageres", "540")
-        update_xml_element(gui_elem, "fanartres", "720")
+        # Cap thumbnail cache sizes to save memory while preserving crisp 1080p UI resolution
+        update_xml_element(gui_elem, "imageres", str(imageres))
+        update_xml_element(gui_elem, "fanartres", str(fanartres))
 
         # 2. Update <videodatabase> section
         vdb_elem = root.find("videodatabase")
@@ -314,7 +332,7 @@ class KodiOptimizerTool(BaseTool):
                     lines.append(f"  * asynctextureupload    : {async_up:<10} ({get_string(30918, 'Optimal')}: false)")
                     lines.append(f"  * minifiedmipmapping    : {min_mip:<10} ({get_string(30918, 'Optimal')}: false)")
                     lines.append(f"  * algorithmdirtyregions : {dirty:<10} ({get_string(30918, 'Optimal')}: 2)")
-                    lines.append(f"  * imageres / fanartres  : {imageres} / {fanartres} ({get_string(30918, 'Optimal')}: 540 / 720)")
+                    lines.append(f"  * imageres / fanartres  : {imageres} / {fanartres} ({get_string(30918, 'Optimal')}: 720 / 1080)")
 
                 vdb = root.find("videodatabase")
                 if vdb is not None:

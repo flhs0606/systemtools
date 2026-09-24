@@ -918,3 +918,19 @@ msgstr "确定要从 .bak 备份中还原所有数据库与高级设置吗？"
 msgctxt "#30920"
 msgid "Restored %d files successfully."
 msgstr "已成功还原 %d 个文件。"
+
+msgctxt "#30921"
+msgid "Select Thumbnail Quality Preset"
+msgstr "请选择海报与背景画质档位"
+
+msgctxt "#30922"
+msgid "1080p Full HD (Recommended, 1:1 pixel crisp, 720p/1080p)"
+msgstr "1080p 高清点对点 (推荐，清晰不发虚，海报720p/背景1080p)"
+
+msgctxt "#30923"
+msgid "Low VRAM Saver (Fast, for low RAM or huge libraries, 540p/720p)"
+msgstr "极速省显存模式 (适合低配或超大海报库，海报540p/背景720p)"
+
+msgctxt "#30924"
+msgid "4K Ultra HD (For 4GB RAM devices and 4K UI skins, 1080p/2160p)"
+msgstr "4K 原生超清 (适合 4GB 高配设备与 4K 皮肤，海报1080p/背景2160p)"

@@ -5,6 +5,7 @@
 import os
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 import zipfile
 
@@ -62,18 +63,43 @@ def build_zip():
     print(f"Building Kodi addon package: {zip_filename}")
     print(f"Addon ID: {addon_id}, Version: {version}")
 
+    created_dirs = set()
+
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        # 1. Explicitly write root addon directory entry with standard 0o755 permissions
+        root_dir_entry = f"{addon_id}/"
+        zinfo_root = zipfile.ZipInfo(root_dir_entry)
+        zinfo_root.external_attr = 0o755 << 16
+        zf.writestr(zinfo_root, "")
+        created_dirs.add(root_dir_entry)
+
         for root, dirs, files in os.walk(ADDON_DIR):
-            # Exclude directories in-place
             dirs[:] = [d for d in dirs if not is_excluded(os.path.relpath(os.path.join(root, d), ADDON_DIR))]
-            for file in files:
+            # Write directory entries
+            for d in dirs:
+                rel_d = os.path.relpath(os.path.join(root, d), ADDON_DIR)
+                archive_dir = os.path.join(addon_id, rel_d).replace("\\", "/") + "/"
+                if archive_dir not in created_dirs:
+                    zinfo_d = zipfile.ZipInfo(archive_dir)
+                    zinfo_d.external_attr = 0o755 << 16
+                    zf.writestr(zinfo_d, "")
+                    created_dirs.add(archive_dir)
+
+            for file in sorted(files):
                 abs_path = os.path.join(root, file)
                 rel_path = os.path.relpath(abs_path, ADDON_DIR)
                 if is_excluded(rel_path):
                     continue
 
                 archive_name = os.path.join(addon_id, rel_path).replace("\\", "/")
-                zf.write(abs_path, archive_name)
+                with open(abs_path, "rb") as f:
+                    file_data = f.read()
+
+                zinfo = zipfile.ZipInfo(archive_name)
+                zinfo.date_time = time.localtime(os.path.getmtime(abs_path))[:6]
+                zinfo.compress_type = zipfile.ZIP_DEFLATED
+                zinfo.external_attr = 0o644 << 16  # standard file permissions
+                zf.writestr(zinfo, file_data)
                 print(f"  + {archive_name}")
 
     print(f"\nPackage created successfully: {zip_path}")

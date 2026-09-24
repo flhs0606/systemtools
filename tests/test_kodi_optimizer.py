@@ -74,8 +74,8 @@ def test_optimize_advancedsettings(tmp_path):
     assert gui.findtext("asynctextureupload") == "false"
     assert gui.findtext("minifiedmipmapping") == "false"
     assert gui.findtext("algorithmdirtyregions") == "2"
-    assert gui.findtext("imageres") == "540"
-    assert gui.findtext("fanartres") == "720"
+    assert gui.findtext("imageres") == "720"
+    assert gui.findtext("fanartres") == "1080"
 
     # Verify <videodatabase> settings
     vdb = root.find("videodatabase")
