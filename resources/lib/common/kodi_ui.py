@@ -108,6 +108,22 @@ def dialog_select(title, items):
     return 0 if items else -1
 
 
+def dialog_select_details(title, items, preselect=-1):
+    """Single-selection dialog that renders icons and a second text line.
+
+    ``useDetails=True`` (Kodi 18+) makes the built-in dialog show
+    ``ListItem`` label / label2 / art.
+    Older Kodi builds that do not support the keyword argument fall back gracefully.
+    """
+    if _HAS_XBMC and xbmcgui:
+        dialog = xbmcgui.Dialog()
+        try:
+            return dialog.select(title, items, preselect=preselect, useDetails=True)
+        except TypeError:
+            return dialog.select(title, items)
+    return 0 if items else -1
+
+
 def dialog_input(title, default=""):
     """Show text input dialog. Returns entered string (empty on cancel)."""
     if _HAS_XBMC and xbmcgui:
