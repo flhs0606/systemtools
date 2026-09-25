@@ -25,6 +25,9 @@
                 </setting>
                 <setting id="custom_speedtest_url" type="string" label="30605" help="30606">
                     <level>1</level>
+                    <constraints>
+                        <allowempty>true</allowempty>
+                    </constraints>
                     <default></default>
                     <control type="edit" format="string"/>
                 </setting>

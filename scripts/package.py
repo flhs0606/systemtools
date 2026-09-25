@@ -16,10 +16,13 @@ DIST_DIR = os.path.join(ADDON_DIR, "dist")
 EXCLUDE_PATTERNS = [
     r"^\.git",
     r"^\.pytest_cache",
+    r"^\.superpowers",
     r"^tests",
     r"^scripts",
     r"^dist",
     r"^build",
+    r"^docs",
+    r"^plugin\.program\.systemtools",
     r"^__pycache__",
     r"\.py[cod]$",
     r"^\.coverage",
