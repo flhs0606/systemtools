@@ -23,6 +23,7 @@ EXCLUDE_PATTERNS = [
     r"^build",
     r"^docs",
     r"^plugin\.program\.systemtools",
+    r"^skin_addon\.xml$",
     r"^__pycache__",
     r"\.py[cod]$",
     r"^\.coverage",

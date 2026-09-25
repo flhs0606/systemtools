@@ -68,13 +68,13 @@
 ```bash
 python scripts/package.py
 ```
-生成安装包位于 `dist/plugin.program.systemtools-1.0.2.zip`。
+生成安装包位于 `dist/plugin.program.systemtools-1.0.3.zip`。
 
 ### 在 Kodi 中安装
 1. 打开 Kodi -> **设置 (Settings)** -> **插件 (Add-ons)**。
 2. 开启 **未知来源 (Unknown sources)**。
 3. 选择 **从 Zip 文件安装 (Install from zip file)**。
-4. 浏览并选择 `dist/plugin.program.systemtools-1.0.2.zip` 即可完成安装。
+4. 浏览并选择 `dist/plugin.program.systemtools-1.0.3.zip` 即可完成安装。
 
 ---
 
@@ -105,3 +105,40 @@ python -m pytest --cov=resources.lib tests/
 ```bash
 flake8 resources/ addon.py tests/
 ```
+
+---
+
+## 全皮肤兼容统一 UI 架构 (v1.0.3)
+
+### 为什么选择原生详细选择对话框？
+* **传统目录的皮肤缺陷**：原先通过 `xbmcplugin` 生成的 `plugin://` 目录列表，必须由**激活皮肤提供的媒体窗口**（`MyPrograms.xml`）来承载渲染。Kodi **不会跨皮肤回退** 窗口 XML 文件。如果第三方皮肤裁减了程序列表或插件视图失效，用户点击插件时就会出现无反应、黑屏或卡死。
+* **原生详细对话框的优势**：
+  1. **100% 皮肤无关**：由 Kodi 核心 C++ 直接渲染，任何皮肤、任何嵌入式设备均绝不闪退、不白屏、不卡死。
+  2. **高颜值与风格原生自适应**：通过 `useDetails=True`，每个工具选项同时显示专属图标、主标题与独立副标题说明；且自适应继承当前皮肤的原生字体、半透明磨砂背景、高亮光标与音效。
+  3. **杜绝外置贴图崩溃**：避免了自定义 `WindowXMLDialog` 在低配 Mali/GLES 驱动盒子上因纹理未加载导致的黑屏或文字悬浮现象。
+
+### 启动方式与容器生命周期管理
+
+| 启动方式 | Kodi 行为 | 工具箱处理策略 |
+|---|---|---|
+| **程序插件列表点击** | `RunAddon` 触发并附带容器句柄 (`handle >= 0`) | 调用 `endOfDirectory(succeeded=False)` 立即释放容器，消除媒体窗口的转圈等待，平滑弹出工具箱 |
+| **收藏夹 / 皮肤快捷键** | `RunPlugin` 或快捷方式触发，无容器 (`handle = -1`) | 直接弹出工具箱原生详细对话框 |
+
+### 快捷调用与收藏夹配置
+在 `userdata/favourites.xml` 中可直接添加如下命令一键唤起工具箱：
+```xml
+<favourite name="系统工具箱">RunPlugin(plugin://plugin.program.systemtools/?action=menu)</favourite>
+```
+*注：URL 结尾不要带斜杠 `/`，以便 Kodi 识别为执行脚本而非目录。*
+
+---
+
+## 更新日志
+
+### 1.0.3
+* **全皮肤兼容架构重构**：主菜单统一采用 Kodi 原生详细对话框（`useDetails=True`），彻底消除第三方皮肤缺失 `MyPrograms.xml` 导致的调不出界面或闪退问题。
+* **完善容器生命周期调度**：有容器启动时自动以 `succeeded=False` 安全释放容器，无容器启动直接呼出，秒级响应。
+* **独立副标题与 i18n 补全**：为各工具配置独立的 `description_id` 与中英文说明，主菜单展示丰富功能简介。
+* **安全异常捕获与通知**：工具执行统一异常捕获并输出堆栈日志与 Kodi Toast 通知，杜绝静默失败。
+* **配置规范性修正**：修正 `settings.xml` 中 `<allowempty>` 约束标签嵌套；`addon.xml` 增加语言声明与版本更新。
+
