@@ -34,3 +34,16 @@ def test_tool_registry():
 
     # Test unknown tool dispatching
     assert ToolRegistry.dispatch("non_existent_tool_123", {}) is False
+
+
+def test_tool_unique_description_ids():
+    from resources.lib.tools.disk_benchmark import DiskBenchmarkTool
+    from resources.lib.tools.dtb_tool import DtbTool
+    from resources.lib.tools.net_speedtest import NetSpeedtestTool
+    from resources.lib.tools.ram_cleaner import RamCleanerTool
+
+    assert DiskBenchmarkTool.description_id == 30026
+    assert DtbTool.description_id == 30027
+    assert NetSpeedtestTool.description_id == 30028
+    assert RamCleanerTool.description_id == 30029
+

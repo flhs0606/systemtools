@@ -942,3 +942,32 @@ msgstr "正在优化 %s (开启 WAL 并发模式)..."
 msgctxt "#30926"
 msgid "Performance optimization completed!"
 msgstr "性能与渲染优化全部完成！"
+
+msgctxt "#30020"
+msgid "Unknown Action: %s"
+msgstr "未知操作：%s"
+
+msgctxt "#30022"
+msgid "Add-on, platform and hardware information"
+msgstr "查看插件、平台与硬件信息"
+
+msgctxt "#30023"
+msgid "Tool failed: %s"
+msgstr "工具执行失败：%s"
+
+msgctxt "#30026"
+msgid "Sequential & 4K random read/write benchmark"
+msgstr "顺序读写与 4K 随机读写 (IOPS) 测试"
+
+msgctxt "#30027"
+msgid "Keep a custom device tree from being overwritten on update"
+msgstr "防止 tar 升级覆盖你的定制设备树"
+
+msgctxt "#30028"
+msgid "LAN / cloud drive bitrate and WAN bandwidth test"
+msgstr "局域网 / 网盘码率与外网带宽测速"
+
+msgctxt "#30029"
+msgid "Flush to disk, drop kernel caches, purge Kodi caches"
+msgstr "刷盘同步 + 释放内核缓存 + 清理 Kodi 缓存"
+

@@ -27,7 +27,7 @@ O_BINARY = getattr(os, "O_BINARY", 0)
 class DiskBenchmarkTool(BaseTool):
     id = "disk_bench"
     title_id = 30003
-    description_id = 30003
+    description_id = 30026
     icon = "DefaultHardDisk.png"
     order = 30
 

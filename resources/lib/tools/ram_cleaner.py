@@ -90,7 +90,7 @@ def format_bytes(num_bytes: int) -> str:
 class RamCleanerTool(BaseTool):
     id = "ram_cleaner"
     title_id = 30800
-    description_id = 30800
+    description_id = 30029
     icon = "DefaultAddonProgram.png"
     order = 18
 

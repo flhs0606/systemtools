@@ -66,7 +66,7 @@ DEFAULT_UPLOAD_URL = "https://speed.cloudflare.com/__up"
 class NetSpeedtestTool(BaseTool):
     id = "speedtest"
     title_id = 30002
-    description_id = 30002
+    description_id = 30028
     icon = "DefaultNetwork.png"
     order = 20
 

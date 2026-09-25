@@ -66,7 +66,7 @@ def set_dtb_protection(enabled: bool, config_dir: str = DEFAULT_CONFIG_DIR) -> b
 class DtbTool(BaseTool):
     id = "dtb_tool"
     title_id = 30700
-    description_id = 30700
+    description_id = 30027
     icon = "DefaultAddonService.png"
     order = 15
 

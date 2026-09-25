@@ -942,3 +942,32 @@ msgstr "Optimizing %s (WAL concurrent mode)..."
 msgctxt "#30926"
 msgid "Performance optimization completed!"
 msgstr "Performance optimization completed!"
+
+msgctxt "#30020"
+msgid "Unknown Action: %s"
+msgstr "Unknown Action: %s"
+
+msgctxt "#30022"
+msgid "Add-on, platform and hardware information"
+msgstr "Add-on, platform and hardware information"
+
+msgctxt "#30023"
+msgid "Tool failed: %s"
+msgstr "Tool failed: %s"
+
+msgctxt "#30026"
+msgid "Sequential & 4K random read/write benchmark"
+msgstr "Sequential & 4K random read/write benchmark"
+
+msgctxt "#30027"
+msgid "Keep a custom device tree from being overwritten on update"
+msgstr "Keep a custom device tree from being overwritten on update"
+
+msgctxt "#30028"
+msgid "LAN / cloud drive bitrate and WAN bandwidth test"
+msgstr "LAN / cloud drive bitrate and WAN bandwidth test"
+
+msgctxt "#30029"
+msgid "Flush to disk, drop kernel caches, purge Kodi caches"
+msgstr "Flush to disk, drop kernel caches, purge Kodi caches"
+
