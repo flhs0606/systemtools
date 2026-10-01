@@ -1,5 +1,8 @@
 # huawei r22 Control
 evdev:input:b0005v0416p0300*
+ KEYBOARD_KEY_70066=s  #电源键
+ KEYBOARD_KEY_70029=back  #返回键
+ KEYBOARD_KEY_7004a=homepage  #主页键
  KEYBOARD_KEY_c01b7=j  #双喇叭 空闲
  KEYBOARD_KEY_c00f6=k  #设置=全局系统设置
  KEYBOARD_KEY_c0083=u  #刷新=全局内核转换（视频模式=视频校准）

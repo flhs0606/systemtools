@@ -1,8 +1,10 @@
 # China Mobile BT smart remote
 evdev:input:b0005v0416p0300*
- KEYBOARD_KEY_c00f0=f1                  #m键(改为u)
- KEYBOARD_KEY_700cc=f2                  ##键(改为j)
- KEYBOARD_KEY_c00fc=f3                  #删除键(改为k)  
+ KEYBOARD_KEY_70066=s  #电源键
+ KEYBOARD_KEY_7004a=homepage  #主页键
+ KEYBOARD_KEY_c00fc=backspace  #删除/返回键
+ KEYBOARD_KEY_c00f0=f1  #m键
+ KEYBOARD_KEY_700cc=f2  ##键  
 
 
 
