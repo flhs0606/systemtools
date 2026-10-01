@@ -1,89 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <keymap>
   <global>
     <keyboard>
+      <up>Up</up>
+      <down>Down</down>
+      <left>Left</left>
+      <right>Right</right>
+      <return>Select</return>
+      <enter>Select</enter>
+      <backspace>Back</backspace>
+      <browser_back>Back</browser_back>
+      <escape>Back</escape>
+      <browser_home>ActivateWindow(Home)</browser_home>
+      <homepage>ActivateWindow(Home)</homepage>
+      <volume_up>VolumeUp</volume_up>
+      <volume_down>VolumeDown</volume_down>
+      <volume_mute>Mute</volume_mute>
+      <mute>Mute</mute>
+      <play_pause>PlayPause</play_pause>
+      <power>ActivateWindow(ShutdownMenu)</power>
+      <s>ActivateWindow(ShutdownMenu)</s>
       <key id="61616">back</key>
-      <key id="61622">firstpage</key>
-      <key id="61656">menu</key>
       <key id="61584">back</key>
       <key id="61526">back</key>
       <key id="61516">back</key>
       <key id="61514">back</key>
       <key id="61622">ActivateWindow(Home)</key>
-      <key id="61656">activatewindow(settings)</key>
-      <key id="61595">contextmenu</key>
       <key id="61481">ActivateWindow(ShutdownMenu)</key>
       <key id="61616" mod="longpress">ActivateWindow(ShutdownMenu)</key>
-      <backspace mod="longpress">ActivateWindow(ShutdownMenu)</backspace>
-	    <browser_back mod="longpress">ActivateWindow(ShutdownMenu)</browser_back>
-	    <escape mod="longpress">ActivateWindow(ShutdownMenu)</escape>
-      <key id="61481" mod="longpress">restartapp</key>
-      <key id="61952">runaddon(script.globalsearch)</key>
-      <key id="61515">RunScript(special://skin/scripts/repeat.py)</key>
-      <key id="61523" mod="longpress">RunScript(special://skin/scripts/rebootoff.py,turnoff)</key>
-      <key id="61525">activatewindowandfocus(systemsettings, -193,0, -174,2)</key>
     </keyboard>
   </global>
-  <fullscreenvideo>
+  <FullscreenVideo>
     <keyboard>
-      <key id="61467">stop</key>
-	    <key id="61568">subtitleshiftup</key>
-	    <key id="61569">subtitleshiftdown</key>
-      <key id="61584">activatewindow(1144)</key>  #“字幕键”一键字幕
-      <key id="61526">activatewindow(1145)</key>  #“音轨键”一键音轨
-      <key id="61516">playerprocessinfo</key>  #“信息”短按调出播放器进程信息
-      <key id="61516" mod="longpress">playerdebug</key>
-      <key id="61514">activatewindow(1116)</key>  #“蓝色键”一键vs10转换窗口
-      <browser_back>ActivateWindow(1126)</browser_back>  #返回确认
-      <backspace>ActivateWindow(1126)</backspace>  #返回确认
-      <escape>ActivateWindow(1126)</escape>
-      <key id="61616">ActivateWindow(1126)</key> # 返回确认
-      <key id="61595">PlayerControl(ShowVideoMenu)</key>
-      <key id="61656">activatewindow(settings)</key>
-      <key id="61448">RunScript(special://skin/scripts/tvjump.py,record)</key>
-      <key id="61448" mod="longpress">RunScript(special://skin/scripts/tvjump.py,delet)</key>
-      <key id="61525">activatewindowandfocus(systemsettings, -193,0, -174,2)</key>
+      <backspace>Back</backspace>
+      <browser_back>Back</browser_back>
+      <escape>Back</escape>
+      <return>OSD</return>
+      <enter>OSD</enter>
+      <play_pause>PlayPause</play_pause>
     </keyboard>
-  </fullscreenvideo>
-  <playerprocessinfo>
-    <keyboard>
-      <key id="61516">back</key>
-    </keyboard>
-  </playerprocessinfo>
-  <Videos>
-    <keyboard>
-	     <key id="61585">RunScript(special://skin/scripts/filterlink.py,remote)</key>
-    </keyboard>
-  </Videos>
-  <VideoMenu>
-    <keyboard>
-      <key id="61467">stop</key>
-      <key id="61453" mod="longpress">OSD</key>
-      <key id="61516">ActivateWindow(playerprocessinfo)</key>  #“信息”短按调出播放器进程信息
-      <key id="61516" mod="longpress">playerdebug</key>
-      <key id="61514">activatewindow(1116)</key>  #“蓝色键”一键vs10转换窗口
-      <browser_back>ActivateWindow(1126)</browser_back>  #返回确认
-      <backspace>ActivateWindow(1126)</backspace>  #返回确认
-      <escape>ActivateWindow(1126)</escape>
-      <key id="61616">ActivateWindow(1126)</key> # 返回确认
-      <key id="61595">PlayerControl(ShowVideoMenu)</key>
-      <key id="61656">activatewindow(settings)</key>
-      <key id="61525">activatewindowandfocus(systemsettings, -193,0, -174,2)</key>
-    </keyboard>
-  </VideoMenu>
-  <fullscreenlivetv>
-    <keyboard>
-      <key id="61570">activatewindow(pvrosdchannels)</key>
-      <key id="61571">activatewindow(pvrchannelguide)</key>
-      <browser_back>ActivateWindow(1126)</browser_back>
-	    <backspace>ActivateWindow(1126)</backspace>
-	    <escape>ActivateWindow(1126)</escape>
-    </keyboard>
-  </fullscreenlivetv>
-  <musicosd>
-    <keyboard>
-	    <browser_back>ActivateWindow(1126)</browser_back>
-	    <backspace>ActivateWindow(1126)</backspace>
-	    <escape>ActivateWindow(1126)</escape>
-	  </keyboard>
-  </musicosd>
+  </FullscreenVideo>
 </keymap>

@@ -31,3 +31,15 @@ def test_remote_presets_directory_and_assets():
         # Each remote must have at least one config file (.xml, .hwdb, or .conf)
         has_config = any(f.endswith((".xml", ".hwdb", ".conf")) for f in files)
         assert has_config, f"Remote {r_id} has no valid config file"
+
+        # Verify no images exist in remotes assets
+        assert not any(f.endswith((".jpg", ".png", ".jpeg")) for f in files), f"Remote {r_id} contains image files"
+
+        # Verify no skin-specific scripts or custom 11xx windows exist in xml
+        for f in files:
+            if f.endswith(".xml"):
+                with open(os.path.join(r_dir, f), "r", encoding="utf-8") as xf:
+                    xml_content = xf.read().lower()
+                    assert "special://skin" not in xml_content, f"Remote {r_id}/{f} contains special://skin reference"
+                    assert "activatewindow(11" not in xml_content, f"Remote {r_id}/{f} contains custom 11xx window ID"
+
