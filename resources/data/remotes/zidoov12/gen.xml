@@ -20,14 +20,11 @@
       <play_pause>PlayPause</play_pause>
       <power>ActivateWindow(ShutdownMenu)</power>
       <s>ActivateWindow(ShutdownMenu)</s>
-      <key id="61616">back</key>
-      <key id="61584">back</key>
-      <key id="61526">back</key>
-      <key id="61516">back</key>
-      <key id="61514">back</key>
+      <backspace mod="longpress">ActivateWindow(ShutdownMenu)</backspace>
+      <browser_back mod="longpress">ActivateWindow(ShutdownMenu)</browser_back>
+      <key id="61616">Back</key>
       <key id="61622">ActivateWindow(Home)</key>
       <key id="61481">ActivateWindow(ShutdownMenu)</key>
-      <key id="61616" mod="longpress">ActivateWindow(ShutdownMenu)</key>
     </keyboard>
   </global>
   <FullscreenVideo>

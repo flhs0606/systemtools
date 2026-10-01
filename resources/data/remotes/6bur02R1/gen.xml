@@ -20,9 +20,8 @@
       <play_pause>PlayPause</play_pause>
       <power>ActivateWindow(ShutdownMenu)</power>
       <s>ActivateWindow(ShutdownMenu)</s>
-      <key id="61625" mod="longpress">back</key>
-      <key id="61624" mod="longpress">back</key>
-      <key id="61622" mod="longpress">back</key>
+      <backspace mod="longpress">ActivateWindow(ShutdownMenu)</backspace>
+      <browser_back mod="longpress">ActivateWindow(ShutdownMenu)</browser_back>
     </keyboard>
   </global>
   <FullscreenVideo>
