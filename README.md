@@ -29,7 +29,7 @@
   - 禁用运行时动态多级贴图生成 (`<minifiedmipmapping>false</minifiedmipmapping>`)，杜绝主渲染线程执行昂贵的 `glGenerateMipmap()` 造成海报列表滚动丢帧。
   - 开启代价减少脏区域局部重绘 (`<algorithmdirtyregions>2</algorithmdirtyregions>`)，避免全视口重绘。
   - 缩略图分辨率智能限制（海报限制 540p、背景图限制 720p），释放高达 50% 显存与内存占用。
-  - 为 SQLite 视频数据库分配 32MB 内存页缓存 (`<cache_size>-32768</cache_size>`)，海量媒体索引瞬间常驻 RAM。
+  - 对齐 SQLite 4KB 原生内存页 (`page_size=4096`) 并建立未看影视复合索引，大幅缩减数据库体积并消除排序开销。
 - **安全备份与一键还原**：修改前自动为数据库和 `advancedsettings.xml` 生成 `.bak` 备份，支持一键无损还原。
 
 ### 5. R10/F10 固件高级设置 (Firmware Advanced Settings)

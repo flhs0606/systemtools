@@ -14,8 +14,6 @@ for large media libraries (tens of thousands of titles) and Mali GPU hardware:
      to avoid full-viewport redraws when scrolling posters.
    - Caps thumbnail cache resolution (<imageres>540</imageres>, <fanartres>720</fanartres>)
      to conserve RAM and GPU VRAM.
-   - Expands SQLite memory page cache (<cache_size>-32768</cache_size>) to keep
-     large B-Tree indexes resident in memory.
 """
 
 import glob
@@ -98,11 +96,6 @@ CUSTOM_INDEXES = [
         "CREATE INDEX IF NOT EXISTS idx_files_unwatched_recent ON files (playCount, dateAdded DESC);",
     ),
     (
-        "art",
-        "idx_art_covering",
-        "CREATE INDEX IF NOT EXISTS idx_art_covering ON art (media_type, media_id, type, url);",
-    ),
-    (
         "bookmark",
         "idx_bookmark_resume",
         "CREATE INDEX IF NOT EXISTS idx_bookmark_resume ON bookmark (type, timeInSeconds, idFile);",
@@ -114,13 +107,26 @@ CUSTOM_INDEXES = [
     ),
 ]
 
+DROP_INDEXES = [
+    "idx_art_covering",
+    "idx_files_unwatched_recent",
+    "idx_bookmark_resume",
+    "idx_vv_lookup",
+]
+
 
 def apply_custom_indexes(conn: sqlite3.Connection) -> int:
-    """Create high-performance composite and covering indexes if tables exist."""
+    """Create high-performance composite indexes if tables exist."""
     cur = conn.cursor()
     cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
     existing_tables = {row[0] for row in cur.fetchall()}
     created_count = 0
+
+    # Ensure negative-optimization/bloated indexes are cleaned up
+    try:
+        cur.execute("DROP INDEX IF EXISTS idx_art_covering;")
+    except Exception:
+        pass
 
     for table, idx_name, idx_sql in CUSTOM_INDEXES:
         if table in existing_tables:
@@ -140,7 +146,7 @@ def drop_custom_indexes(conn: sqlite3.Connection) -> int:
     existing_indexes = {row[0] for row in cur.fetchall()}
     dropped_count = 0
 
-    for _, idx_name, _ in CUSTOM_INDEXES:
+    for idx_name in DROP_INDEXES:
         if idx_name in existing_indexes:
             try:
                 cur.execute(f"DROP INDEX IF EXISTS {idx_name};")
@@ -207,6 +213,11 @@ class KodiOptimizerTool(BaseTool):
     def run(self, params: Dict[str, str]) -> None:
         title = get_string(30900, "Kodi Performance Optimizer")
         info(f"Kodi Optimizer invoked on userdata: {self.userdata_path}")
+
+        # Auto-clean any legacy negative-optimization items from previous versions
+        cleaned_xml, cleaned_idxs = self.clean_legacy_optimizations()
+        if cleaned_xml > 0 or cleaned_idxs > 0:
+            info(f"Auto-cleaned legacy items: {cleaned_xml} XML tags, {cleaned_idxs} indexes")
 
         options = [
             f"1. {get_string(30902, 'Apply All Performance Optimizations')}",
@@ -478,6 +489,89 @@ class KodiOptimizerTool(BaseTool):
 
         return db_count, total_dropped
 
+    def clean_legacy_optimizations(self) -> Tuple[int, int]:
+        """Clean up ineffective/phantom XML tags and negative-optimization indexes from prior versions.
+
+        Returns (cleaned_xml_tags_count, dropped_indexes_count).
+        """
+        cleaned_xml = 0
+        dropped_indexes = 0
+
+        # 1. Clean up legacy XML items in advancedsettings.xml
+        as_path = os.path.join(self.userdata_path, "advancedsettings.xml")
+        if os.path.exists(as_path):
+            try:
+                tree = ET.parse(as_path)
+                root = tree.getroot()
+                xml_changed = False
+
+                # Remove unsupported <blurayisocache>
+                iso_elem = root.find("blurayisocache")
+                if iso_elem is not None:
+                    root.remove(iso_elem)
+                    cleaned_xml += 1
+                    xml_changed = True
+
+                # Remove invalid <cache_size> and local <connecttimeout> under <videodatabase>
+                vdb = root.find("videodatabase")
+                if vdb is not None:
+                    cs = vdb.find("cache_size")
+                    if cs is not None:
+                        vdb.remove(cs)
+                        cleaned_xml += 1
+                        xml_changed = True
+                    ct = vdb.find("connecttimeout")
+                    if ct is not None and vdb.find("host") is None:
+                        vdb.remove(ct)
+                        cleaned_xml += 1
+                        xml_changed = True
+                    if len(vdb) == 0:
+                        root.remove(vdb)
+                        xml_changed = True
+
+                # Clean up local empty database timeout nodes if no remote host
+                for db_tag in ["musicdatabase", "tvdatabase", "epgdatabase"]:
+                    elem = root.find(db_tag)
+                    if elem is not None and elem.find("host") is None:
+                        ct = elem.find("connecttimeout")
+                        if ct is not None:
+                            elem.remove(ct)
+                            cleaned_xml += 1
+                            xml_changed = True
+                        if len(elem) == 0:
+                            root.remove(elem)
+                            xml_changed = True
+
+                if xml_changed:
+                    backup_file(as_path)
+                    try:
+                        ET.indent(root, space="  ", level=0)
+                    except AttributeError:
+                        pass
+                    tree.write(as_path, encoding="utf-8", xml_declaration=True)
+                    info(f"Cleaned {cleaned_xml} legacy/invalid XML items from advancedsettings.xml")
+            except Exception as e:
+                error(f"Failed to clean legacy XML settings: {e}")
+
+        # 2. Clean up legacy negative-optimization indexes (idx_art_covering) across all DBs
+        db_dir = os.path.join(self.userdata_path, "Database")
+        db_files = get_database_files(db_dir)
+        for db_path in db_files:
+            try:
+                conn = sqlite3.connect(db_path, timeout=5.0, isolation_level=None)
+                cur = conn.cursor()
+                cur.execute("SELECT name FROM sqlite_master WHERE type='index' AND name='idx_art_covering';")
+                if cur.fetchone():
+                    cur.execute("DROP INDEX IF EXISTS idx_art_covering;")
+                    cur.execute("PRAGMA optimize;")
+                    dropped_indexes += 1
+                    info(f"Cleaned deprecated index idx_art_covering from {os.path.basename(db_path)}")
+                conn.close()
+            except Exception as e:
+                error(f"Failed to clean legacy indexes on {os.path.basename(db_path)}: {e}")
+
+        return cleaned_xml, dropped_indexes
+
     def optimize_advancedsettings(self, imageres: int = 720, fanartres: int = 1080) -> None:
         """Safely merge Mali GPU and SQLite cache optimizations into advancedsettings.xml."""
         as_path = os.path.join(self.userdata_path, "advancedsettings.xml")
@@ -512,15 +606,24 @@ class KodiOptimizerTool(BaseTool):
         update_xml_element(gui_elem, "imageres", str(imageres))
         update_xml_element(gui_elem, "fanartres", str(fanartres))
 
-        # 2. Update <videodatabase> section
+        # 2. Clean up phantom / ineffective XML sections if present
+        # Clean up <videodatabase><cache_size> or empty <videodatabase> (Kodi hardcodes SQLite cache to 4096; ignores XML cache_size)
         vdb_elem = root.find("videodatabase")
-        if vdb_elem is None:
-            vdb_elem = ET.SubElement(root, "videodatabase")
+        if vdb_elem is not None:
+            elem_cache = vdb_elem.find("cache_size")
+            if elem_cache is not None:
+                vdb_elem.remove(elem_cache)
+            elem_to = vdb_elem.find("connecttimeout")
+            # If videodatabase only had connecttimeout and/or cache_size without remote host, remove them for local SQLite
+            if elem_to is not None and vdb_elem.find("host") is None:
+                vdb_elem.remove(elem_to)
+            if len(vdb_elem) == 0:
+                root.remove(vdb_elem)
 
-        if vdb_elem.find("connecttimeout") is None:
-            update_xml_element(vdb_elem, "connecttimeout", "5")
-        # Allocate 32MB page cache for SQLite database index lookups (-32768 KB)
-        update_xml_element(vdb_elem, "cache_size", "-32768")
+        # Clean up non-existent <blurayisocache> section (unsupported by Kodi)
+        iso_elem = root.find("blurayisocache")
+        if iso_elem is not None:
+            root.remove(iso_elem)
 
         # Format XML nicely with indentation
         try:
@@ -561,7 +664,10 @@ class KodiOptimizerTool(BaseTool):
                 cur.execute("SELECT name FROM sqlite_master WHERE type='index';")
                 existing_idxs = {row[0] for row in cur.fetchall()}
                 has_custom = any(idx_name in existing_idxs for _, idx_name, _ in CUSTOM_INDEXES)
+                has_legacy = "idx_art_covering" in existing_idxs
                 idx_tag = f" [{get_string(30938, 'Indexes: Active')}]" if has_custom else ""
+                if has_legacy:
+                    idx_tag += " [Legacy idx_art_covering (Cleanup Recommended)]"
 
                 cur.execute("PRAGMA freelist_count;")
                 res_free = cur.fetchone()
@@ -610,10 +716,15 @@ class KodiOptimizerTool(BaseTool):
                     lines.append(f"  * algorithmdirtyregions : {dirty:<10} ({get_string(30918, 'Optimal')}: 2)")
                     lines.append(f"  * imageres / fanartres  : {imageres} / {fanartres} ({get_string(30918, 'Optimal')}: 720 / 1080)")
 
+                # Check if any legacy phantom tags exist
+                legacy_tags = []
                 vdb = root.find("videodatabase")
-                if vdb is not None:
-                    cache_size = vdb.findtext("cache_size", not_set_str)
-                    lines.append(f"  * videodatabase/cache_size : {cache_size:<10} ({get_string(30918, 'Optimal')}: -32768)")
+                if vdb is not None and vdb.find("cache_size") is not None:
+                    legacy_tags.append("<cache_size>")
+                if root.find("blurayisocache") is not None:
+                    legacy_tags.append("<blurayisocache>")
+                if legacy_tags:
+                    lines.append(f"  * [Notice: Old invalid settings detected: {', '.join(legacy_tags)}. Re-apply optimization to clean.]")
             except Exception as e:
                 lines.append(f"  * [Parse Error: {e}]")
 

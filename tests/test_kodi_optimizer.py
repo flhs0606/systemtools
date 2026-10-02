@@ -62,10 +62,14 @@ def test_optimize_advancedsettings(tmp_path):
     userdata = str(tmp_path / "userdata")
     os.makedirs(userdata, exist_ok=True)
 
+    # Pre-populate XML with invalid / phantom nodes to verify cleanup
+    as_path = os.path.join(userdata, "advancedsettings.xml")
+    with open(as_path, "w", encoding="utf-8") as f:
+        f.write("<advancedsettings><videodatabase><cache_size>-32768</cache_size></videodatabase><blurayisocache><pagesize>256</pagesize></blurayisocache></advancedsettings>")
+
     tool = KodiOptimizerTool(userdata_path=userdata)
     tool.optimize_advancedsettings()
 
-    as_path = os.path.join(userdata, "advancedsettings.xml")
     assert os.path.exists(as_path)
 
     tree = ET.parse(as_path)
@@ -81,10 +85,11 @@ def test_optimize_advancedsettings(tmp_path):
     assert gui.findtext("imageres") == "720"
     assert gui.findtext("fanartres") == "1080"
 
-    # Verify <videodatabase> settings
+    # Verify phantom settings (<cache_size> and <blurayisocache>) were cleaned up
+    assert root.find("blurayisocache") is None
     vdb = root.find("videodatabase")
-    assert vdb is not None
-    assert vdb.findtext("cache_size") == "-32768"
+    if vdb is not None:
+        assert vdb.find("cache_size") is None
 
 
 def test_get_status_report(tmp_path):
@@ -263,18 +268,22 @@ def test_apply_and_drop_custom_indexes():
     cur.execute("CREATE TABLE bookmark (type INT, timeInSeconds REAL, idFile INT);")
     cur.execute("CREATE TABLE videoversion (idMedia INT, media_type TEXT, itemType INT, idFile INT);")
 
-    # Apply indexes
+    # Simulate an existing deprecated idx_art_covering index
+    cur.execute("CREATE INDEX idx_art_covering ON art (media_type, media_id, type, url);")
+
+    # Apply indexes (should apply 3 active indexes and clean up idx_art_covering)
     applied = apply_custom_indexes(conn)
-    assert applied == 4
+    assert applied == 3
 
     cur.execute("SELECT name FROM sqlite_master WHERE type='index';")
     idx_names = {r[0] for r in cur.fetchall()}
+    assert "idx_art_covering" not in idx_names
     for _, idx_name, _ in CUSTOM_INDEXES:
         assert idx_name in idx_names
 
     # Drop indexes
     dropped = drop_custom_indexes(conn)
-    assert dropped == 4
+    assert dropped >= 3
 
     cur.execute("SELECT name FROM sqlite_master WHERE type='index';")
     remaining_idxs = {r[0] for r in cur.fetchall()}
@@ -419,6 +428,64 @@ def test_run_menu_dispatch(tmp_path, monkeypatch):
     monkeypatch.setattr(tool, "_action_revert_indexes", lambda t: called.append("revert"))
     tool.run({})
     assert called == ["revert"]
+
+
+def test_clean_legacy_optimizations(tmp_path):
+    userdata = str(tmp_path / "userdata")
+    db_dir = os.path.join(userdata, "Database")
+    os.makedirs(db_dir, exist_ok=True)
+
+    # 1. Setup legacy advancedsettings.xml with phantom / invalid tags
+    as_path = os.path.join(userdata, "advancedsettings.xml")
+    with open(as_path, "w", encoding="utf-8") as f:
+        f.write(
+            "<advancedsettings>\n"
+            "  <gui><imageres>720</imageres></gui>\n"
+            "  <videodatabase><cache_size>-32768</cache_size><connecttimeout>5</connecttimeout></videodatabase>\n"
+            "  <musicdatabase><connecttimeout>5</connecttimeout></musicdatabase>\n"
+            "  <blurayisocache><pagesize>262144</pagesize></blurayisocache>\n"
+            "</advancedsettings>\n"
+        )
+
+    # 2. Setup legacy DB with idx_art_covering
+    db_path = os.path.join(db_dir, "MyVideos131.db")
+    conn = sqlite3.connect(db_path, isolation_level=None)
+    conn.execute("CREATE TABLE art (media_type TEXT, media_id INT, type TEXT, url TEXT);")
+    conn.execute("CREATE INDEX idx_art_covering ON art (media_type, media_id, type, url);")
+    conn.close()
+
+    tool = KodiOptimizerTool(userdata_path=userdata)
+
+    # Verify status report detects legacy items before cleanup
+    report = tool.get_status_report()
+    assert "Legacy idx_art_covering" in report
+    assert "Old invalid settings detected" in report
+
+    # Execute cleanup
+    cleaned_xml, dropped_idxs = tool.clean_legacy_optimizations()
+    assert cleaned_xml >= 3
+    assert dropped_idxs == 1
+
+    # Verify XML was properly cleaned
+    tree = ET.parse(as_path)
+    root = tree.getroot()
+    assert root.find("blurayisocache") is None
+    assert root.find("videodatabase") is None
+    assert root.find("musicdatabase") is None
+    # Valid gui tags remain untouched
+    assert root.find("gui").findtext("imageres") == "720"
+
+    # Verify database index was dropped
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+    cur.execute("SELECT name FROM sqlite_master WHERE type='index' AND name='idx_art_covering';")
+    assert cur.fetchone() is None
+    conn.close()
+
+    # Re-running cleanup should be a no-op
+    c_xml, c_idx = tool.clean_legacy_optimizations()
+    assert c_xml == 0
+    assert c_idx == 0
 
 
 

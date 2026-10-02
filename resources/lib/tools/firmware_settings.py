@@ -3,7 +3,7 @@
 
 Provides category-based configuration for custom CoreELEC / Amlogic firmware
 advanced settings (ALSA sink, hardware decoding, VC-1, Mali EGL pipeline,
-dirty regions, network timeouts, and Blu-ray ISO block cache).
+dirty regions, and network timeouts).
 """
 
 import os
